@@ -1,0 +1,259 @@
+Dragon
+Unicorn
+Phoenix
+Mermaid/Merman
+Centaur
+Griffin
+Minotaur
+Harpy
+Satyr
+Siren
+Werewolf
+Chimera
+Faun
+Kraken
+Cyclops
+Basilisk
+Gorgon (Medusa)
+Hippogriff
+Yeti/Bigfoot
+Kitsune (Fox spirit)
+Selkie
+Nymph
+Troll
+Leprechaun
+Fairy
+Genie
+Gnome
+Valkyrie
+Dwarf
+Orc
+Elf
+Goblin
+Hobbit
+Wraith
+Zombie
+Vampire
+Frankenstein's Monster
+Witch
+Wizard
+Sorcerer
+Sorceress
+Banshee
+Mummy
+Ghost
+Skeleton
+Harlequin
+Jester
+Puppet
+Angel
+Demon
+Satanic creature
+Angelic being
+Pegasus
+Hippocampus
+Faerie dragon
+Gargoyle
+Faun
+Ogre
+Chupacabra
+Jackalope
+Big Bird (from folklore)
+Jersey Devil
+Thunderbird
+Lizardman
+Mothman
+Wendigo
+Bunyip
+Kappa
+Tengu
+Tanuki
+Jorogumo (Spider woman)
+Hulder
+Huldra
+Dullahan
+Nuckelavee
+Rusalka
+Vodyanoy
+Baku (Dream eater)
+Taniwha
+Pukwudgie
+Elwetritsch
+Cuca (Brazilian folklore)
+Duwende (Philippine folklore)
+Mapinguari (South American folklore)
+Yara-ma-yha-who (Australian Aboriginal folklore)
+Ahuizotl (Aztec mythology)
+Nian (Chinese folklore)
+Kapre (Philippine folklore)
+Kawuk (Tibetan folklore)
+Hodag (American folklore)
+Ahuizotl (Aztec mythology)
+Amarok (Inuit mythology)
+Gaasyendietha (Iroquois mythology)
+Ahkiyyini (Inuit mythology)
+Kishi (African folklore)
+Kamaitachi (Japanese folklore)
+Yurei (Japanese ghost)
+Taniwha (Maori mythology)
+Chaneques (Mexican folklore)
+Xing Tian (Chinese mythology)
+Chang'e (Chinese moon goddess)
+
+Dog
+Cat
+Horse
+Cow
+Elephant
+Giraffe
+Lion
+Tiger
+Bear
+Deer
+Rabbit
+Fox
+Squirrel
+Chipmunk
+Raccoon
+Kangaroo
+Koala
+Panda
+Penguin
+Dolphin
+Whale
+Octopus
+Snail
+Butterfly
+Bee
+Ant
+Grasshopper
+Ladybug
+Dragonfly
+Hummingbird
+Bald Eagle
+Owl
+Falcon
+Peacock
+Parrot
+Flamingo
+Pelican
+Seagull
+Duck
+Swan
+Heron
+Frog
+Toad
+Turtle
+Tortoise
+Alligator
+Crocodile
+Snake
+Lizard
+Chameleon
+Gecko
+Platypus
+Kangaroo
+Otter
+Beaver
+Sloth
+Armadillo
+Hedgehog
+Porcupine
+Gorilla
+Chimpanzee
+Orangutan
+Lemur
+Meerkat
+Prairie Dog
+Cheetah
+Hyena
+Zebra
+Rhinoceros
+Hippopotamus
+Tapir
+Warthog
+Wolverine
+Tasmanian Devil
+Koala
+Koala
+Quokka
+Capybara
+Marmoset
+Aye-Aye
+Skunk
+Opossum
+Rattlesnake
+Garter Snake
+Boa Constrictor
+Iguana
+Komodo Dragon
+Seahorse
+Starfish
+Jellyfish
+Sea Turtle
+Clownfish
+Goldfish
+Salmon
+Trout
+Blue Whale
+Humpback Whale
+Great White Shark
+Hammerhead Shark
+Nurse Shark
+
+Chicken Alfredo
+Beef Stroganoff
+Chicken Parmesan
+Beef Tacos
+Shrimp Scampi
+Veggie Stir-Fry
+Margherita Pizza
+Caesar Salad
+Chicken Quesadilla
+Spaghetti Carbonara
+Baked Ziti
+Clam Chowder
+Eggs Benedict
+Sushi Rolls
+Chicken Pot Pie
+Beef and Broccoli
+Beef Burrito
+BLT Sandwich
+Chicken Fajitas
+Vegetarian Chili
+Chicken Tenders
+Tofu Stir-Fry
+Chicken Fried Rice
+BBQ Ribs
+Chicken Enchiladas
+Beef Lo Mein
+Baked Salmon
+Beef and Mushroom Pie
+Shrimp Po' Boy
+Tofu Scramble
+
+Coffee mug
+Smartphone
+Toothbrush
+Bicycle
+Keychain
+Umbrella
+Wallet
+Sunglasses
+Refrigerator
+Television
+Backpack
+Pen
+Notebook
+Alarm clock
+Sneakers
+Hairbrush
+Kitchen knife
+Vacuum cleaner
+Water bottle
+Microwave
+Pencil sharpener
+Remote control
+Coffee maker
+Trash can
+Stapler
