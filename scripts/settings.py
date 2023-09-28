@@ -1,10 +1,9 @@
 import os
 import json
 
-DEFAULTS = {
-    "posting_timer": 3600,
-    "spam_prevention": False,
-}
+# load from defaults/settings.json if it doesn't exist
+with open('defaults/settings.json', 'r') as f:
+    DEFAULTS = json.load(f)
 
 def initialize():
     # Initialize settings.json if it doesn't exist
