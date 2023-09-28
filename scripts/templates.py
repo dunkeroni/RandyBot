@@ -108,6 +108,9 @@ def build_random_message():
         subjects = f.readlines()
     intro = random.choice(intros).strip("\n")
     descriptor = random.choice(descriptors).strip("\n")
+    # 25% chance to add another descriptor, repeating until it doesn't
+    while random.randint(1,4) == 1:
+        descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
     subject = random.choice(subjects).strip("\n")
     message = intro + ": `" + descriptor + " " + subject + "`"
     return message

@@ -5,7 +5,7 @@ import random
 import os
 from dotenv import load_dotenv
 import logging
-from scripts.settings import get_settings, set_settings
+from scripts.settings import get_settings, save_settings
 import scripts.templates as templates
 import asyncio
 
@@ -80,6 +80,11 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed '" + line + "' from " + target, color=0x00ff00), ephemeral=True)
     await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.")
 
-
+@Bot.tree.command(name="randyspeed", description="Change the posting speed of RandyBOT")
+@app_commands.describe(speed="How often RandyBOT should post, in seconds")
+async def randy_speed(Interaction: discord.Interaction, speed: int):
+    setting["posting_timer"] = speed
+    save_settings(setting)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed posting speed to " + str(speed) + " seconds", color=0x00ff00), ephemeral=True)
 
 Bot.run(TOKEN, log_handler=handler)

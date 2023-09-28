@@ -22,10 +22,7 @@ def get_settings():
 
     return settings
 
-def set_settings(settings):
-    # Initialize settings.json if it doesn't exist
-    initialize()
-
+def save_settings(settings):
     # Write settings.json
     with open('settings.json', 'w') as f:
         json.dump(settings, f)
