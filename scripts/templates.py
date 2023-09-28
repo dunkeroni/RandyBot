@@ -1,4 +1,5 @@
 import os
+import random
 
 def initialize_templates():
     # make sure the templates/ directory exists
@@ -44,7 +45,7 @@ def clean_template(target):
         if l.strip("\n") != "":
             cleaned.add(l)
     cleaned = list(cleaned)
-    print(cleaned)
+    #print(cleaned)
     with open('templates/' + target + '.txt', 'w') as f:
         for l in cleaned:
             f.write(l)
@@ -95,4 +96,18 @@ def auto_import():
     clean_template('subjects')
     clean_template('intros')
 
-    print("Done")
+    print("Auto-import complete")
+
+def build_random_message():
+    # build a random message from the templates
+    with open('templates/intros.txt', 'r') as f:
+        intros = f.readlines()
+    with open('templates/descriptors.txt', 'r') as f:
+        descriptors = f.readlines()
+    with open('templates/subjects.txt', 'r') as f:
+        subjects = f.readlines()
+    intro = random.choice(intros).strip("\n")
+    descriptor = random.choice(descriptors).strip("\n")
+    subject = random.choice(subjects).strip("\n")
+    message = intro + ": `" + descriptor + " " + subject + "`"
+    return message

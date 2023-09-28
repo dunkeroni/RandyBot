@@ -1,236 +1,236 @@
-skunk
-tanuki
-beef and mushroom pie
-squirrel
-chimera
-garter snake
-vegetarian chili
-faun
-skeleton
-demon
-wallet
-refrigerator
-fox
-chicken pot pie
-seahorse
-minotaur
-tofu stir-fry
-trash can
-genie
-toothbrush
-meerkat
-fairy
-veggie stir-fry
-smartphone
-lemur
-hammerhead shark
-jersey devil
-hyena
-mothman
-spaghetti carbonara
-koala
-beef tacos
-faerie dragon
-bald eagle
-swan
-humpback whale
-puppet
-heron
-kraken
-armadillo
-pencil sharpener
-zombie
-bear
-gnome
-mummy
-chipmunk
-bee
-satyr
-clam chowder
-harlequin
-jester
-mapinguari
-werewolf
-aye-aye
-goldfish
-peacock
-blt sandwich
-dragonfly
-sea turtle
-ogre
-opossum
-vacuum cleaner
-baked ziti
-sunglasses
-siren
-beef stroganoff
-sneakers
-dullahan
-penguin
-huldra
-chicken quesadilla
-beef and broccoli
-bbq ribs
-kappa
-frankenstein's monster
-shrimp po' boy
-dragon
-nuckelavee
-tapir
-sorceress
-leprechaun
-clownfish
-frog
-butterfly
-gorgon (medusa)
-wendigo
-octopus
-hippopotamus
-notebook
-yeti/bigfoot
-capybara
-parrot
-quokka
-chicken fried rice
-giraffe
-falcon
-ladybug
-shrimp scampi
-cheetah
-pen
-orangutan
-chicken parmesan
-gecko
-mermaid/merman
-dog
-bunyip
-alarm clock
-chimpanzee
-jellyfish
-goblin
-bicycle
-salmon
-amarok
-crocodile
-griffin
-boa constrictor
-elwetritsch
-jackalope
-wizard
-dwarf
-hobbit
-grasshopper
-cow
-lizardman
-pelican
-whale
-chicken alfredo
-raccoon
-centaur
-orc
-lion
-hairbrush
-gargoyle
-sloth
-baked salmon
-duck
-sorcerer
-komodo dragon
-snake
-otter
-rattlesnake
-hedgehog
-basilisk
-taniwha
-dolphin
-toad
-trout
-deer
-nurse shark
-kitsune (fox spirit)
-tengu
-witch
-chupacabra
-chicken enchiladas
-lizard
-beaver
-valkyrie
-kitchen knife
-wolverine
-remote control
-cat
-vodyanoy
-iguana
-jorogumo (spider woman)
-television
-coffee maker
-beef lo mein
-caesar salad
-baku (dream eater)
-vampire
-ahuizotl
-duwende
-big bird (from folklore)
-thunderbird
-ghost
-backpack
-phoenix
-tasmanian devil
-horse
-starfish
-cyclops
-satanic creature
-microwave
-gorilla
-hippocampus
-pukwudgie
-angel
-pegasus
-turtle
-umbrella
-alligator
-prairie dog
-harpy
-wraith
-warthog
-rhinoceros
-rusalka
-kangaroo
-beef burrito
 angelic being
-seagull
-platypus
-owl
-keychain
-hippogriff
-blue whale
-porcupine
-zebra
-elephant
-chicken tenders
-hulder
-margherita pizza
-sushi rolls
-tofu scramble
-panda
-chicken fajitas
-water bottle
-stapler
-flamingo
-unicorn
-tiger
-coffee mug
-marmoset
-rabbit
-tortoise
-elf
-nymph
+jorogumo (spider woman)
+backpack
+jester
 snail
-troll
-hummingbird
-ant
-great white shark
-chameleon
-selkie
+toad
+blt sandwich
+pegasus
+tofu scramble
+deer
+baku (dream eater)
+ogre
+puppet
+tasmanian devil
+dog
+cat
+basilisk
+shrimp scampi
+chicken tenders
+tengu
+jersey devil
+tortoise
+sorceress
+remote control
+rattlesnake
+blue whale
+heron
+humpback whale
+cow
+vodyanoy
+rusalka
+chicken enchiladas
+tofu stir-fry
+beef burrito
+panda
 banshee
+satanic creature
+bbq ribs
+faerie dragon
+frog
+hippogriff
+mothman
+kangaroo
+lizardman
+gorilla
+kappa
+trout
+chameleon
+elwetritsch
+hippopotamus
+chicken pot pie
+orangutan
+capybara
+salmon
+garter snake
+centaur
+gnome
+clownfish
+iguana
+parrot
+owl
+dullahan
+snake
+notebook
+bee
+selkie
+squirrel
+spaghetti carbonara
+dolphin
+mapinguari
+baked ziti
+vampire
+refrigerator
+starfish
+faun
+ahuizotl
+bicycle
+satyr
+beef tacos
+elf
 eggs benedict
+goblin
+crocodile
+skunk
+jackalope
+demon
+beef and mushroom pie
+cheetah
+seahorse
+valkyrie
+wallet
+water bottle
+dragonfly
+ghost
+penguin
+vacuum cleaner
+phoenix
+margherita pizza
+duwende
+porcupine
+toothbrush
+harpy
+armadillo
+lion
+peacock
+trash can
+kitchen knife
+nuckelavee
+grasshopper
+smartphone
+shrimp po' boy
+clam chowder
+warthog
+opossum
+octopus
+chicken alfredo
+tapir
+ant
+beaver
+sushi rolls
+sorcerer
+fox
+unicorn
+goldfish
+hairbrush
+yeti/bigfoot
+beef stroganoff
+flamingo
+meerkat
+chicken fajitas
+leprechaun
+kraken
+horse
+lemur
+chupacabra
+sneakers
+otter
+hummingbird
+caesar salad
+pencil sharpener
+chimera
+coffee mug
+baked salmon
+boa constrictor
+fairy
+ladybug
+hedgehog
+bald eagle
+zebra
+great white shark
+coffee maker
+jellyfish
+whale
+chipmunk
+witch
+giraffe
+genie
+bear
+hammerhead shark
+chicken parmesan
+umbrella
+marmoset
+big bird (from folklore)
+raccoon
+hulder
+zombie
+werewolf
+wizard
+beef lo mein
+orc
+komodo dragon
+skeleton
+rhinoceros
+tanuki
+griffin
+pukwudgie
+harlequin
+dwarf
+duck
+bunyip
+elephant
+siren
+beef and broccoli
+keychain
+gecko
+vegetarian chili
+chicken quesadilla
+wendigo
+alarm clock
+minotaur
+angel
+prairie dog
+television
+chicken fried rice
+falcon
+microwave
+kitsune (fox spirit)
+veggie stir-fry
+huldra
+frankenstein's monster
+taniwha
+butterfly
+nurse shark
+koala
+amarok
+quokka
+pelican
+sunglasses
+rabbit
+wolverine
+nymph
+gorgon (medusa)
+stapler
+swan
+pen
+sea turtle
+mummy
+alligator
+hippocampus
+turtle
+hyena
+cyclops
+dragon
+hobbit
+wraith
+tiger
+chimpanzee
+aye-aye
+platypus
+gargoyle
+thunderbird
+troll
+sloth
+lizard
+seagull
+mermaid/merman
