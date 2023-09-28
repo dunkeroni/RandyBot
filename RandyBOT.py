@@ -53,6 +53,12 @@ async def send_periodically():
         print(message)
         await asyncio.sleep(setting["posting_timer"])
 
+def only_this_guild(guild_id: int):
+    async def predicate(ctx):
+        if ctx.guild is None:
+            raise commands.NoPrivateMessage() 
+        return ctx.guild.id == guild_id           
+    return commands.check(predicate)
 
 @Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
 @app_commands.describe(target="Which list to add the new line to")
