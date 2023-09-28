@@ -51,7 +51,11 @@ async def send_periodically():
         message = templates.build_random_message()
         await channel.send(message)
         print(message)
-        await asyncio.sleep(setting["posting_timer"])
+        #wait 10 seconds at a time until the timer is up
+        time = 0
+        while time < setting["posting_timer"]:
+            await asyncio.sleep(10)
+            time += 10
 
 
 @Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
@@ -86,5 +90,12 @@ async def randy_speed(Interaction: discord.Interaction, speed: int):
     setting["posting_timer"] = speed
     save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed posting speed to " + str(speed) + " seconds", color=0x00ff00), ephemeral=True)
+
+@Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
+async def randy_random(Interaction: discord.Interaction):
+    channel = Bot.get_channel(int(CHANNEL_ID))
+    message = templates.build_random_message()
+    await channel.send(message)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
 Bot.run(TOKEN, log_handler=handler)
