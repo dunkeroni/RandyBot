@@ -73,8 +73,8 @@ async def is_in_server_list(ctx: discord.Interaction):
 async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     total = templates.add_to_template(line, target)
     channel = Bot.get_channel(int(setting["channel_id"]))
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target + ".\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
-    await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list.")
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target, color=0x00ff00), ephemeral=True)
+    await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list." + ".\nThere are now " + str(total) + " " + target)
 
 @Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
 @app_commands.check(is_in_server_list)
