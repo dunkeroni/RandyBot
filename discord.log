@@ -1,2 +1,12 @@
-[2023-09-28 11:03:42] [INFO    ] discord.client: logging in using static token
-[2023-09-28 11:03:43] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: ed9486028d704319a1b2666640f85e77).
+[2023-09-28 21:05:10] [INFO    ] discord.client: logging in using static token
+[2023-09-28 21:05:11] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 23fe3ee3180ac9ced0dc1196cf253ff5).
+[2023-09-29 01:02:48] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 02:24:31] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 02:26:41] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 02:54:16] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 03:33:11] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 06:07:36] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 07:26:16] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 08:10:49] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 08:40:55] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.
+[2023-09-29 09:38:03] [INFO    ] discord.gateway: Shard ID None has successfully RESUMED session 23fe3ee3180ac9ced0dc1196cf253ff5.

@@ -13,7 +13,9 @@ def initialize_templates():
     required_files = ['intros.txt', 'descriptors.txt', 'subjects.txt']  
     for file in required_files:
         if not os.path.exists('templates/' + file):
-            open('templates/' + file, 'w').close()
+            f = open('templates/' + file, 'w')
+            f.write("DEFAULT TEXT\n")
+            f.close()
             print(file + " created")
         else:
             print(file + " already exists")
@@ -25,6 +27,7 @@ def add_to_template(newline, target):
     with open('templates/' + target + '.txt', 'a') as f:
         f.write(newline + '\n')
         print("Added '" + newline + "' to " + target)
+    clean_template(target)
 
 def remove_from_template(line, target):
     with open('templates/' + target + '.txt', 'r') as f:
@@ -45,7 +48,7 @@ def clean_template(target):
         if l.strip("\n") != "":
             cleaned.add(l)
     cleaned = list(cleaned)
-    #print(cleaned)
+    cleaned.sort()
     with open('templates/' + target + '.txt', 'w') as f:
         for l in cleaned:
             f.write(l)

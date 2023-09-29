@@ -2,8 +2,7 @@ import os
 import json
 
 # load from defaults/settings.json if it doesn't exist
-with open('defaults/settings.json', 'r') as f:
-    DEFAULTS = json.load(f)
+DEFAULTS = {"posting_timer": 300, "channel_id": 1234567890, "server_whitelist":[], "active": True}
 
 def initialize():
     # Initialize settings.json if it doesn't exist
