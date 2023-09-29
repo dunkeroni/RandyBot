@@ -113,8 +113,9 @@ def build_random_message(setting):
     intro = random.choice(intros).strip("\n")
     descriptor = random.choice(descriptors).strip("\n")
     # 25% chance to add another descriptor, repeating until it doesn't
-    while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
-        descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
+    if setting["repetition_odds"] > 0:
+        while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
+            descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
     subject = random.choice(subjects).strip("\n")
     message = intro + ": `" + descriptor + " " + subject + "`"
     return message
