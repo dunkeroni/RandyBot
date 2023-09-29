@@ -1,1 +1,1 @@
-{"posting_timer": 600, "channel_id": 1156795445037760535, "server_whitelist": [1156795444488314890, 1010980909568245801], "active": true}
+{"posting_timer": 30, "channel_id": 1156795445037760535, "server_whitelist": [1156795444488314890, 1010980909568245801], "active": true, "repetition_odds": 3, "max_length": 200, "num_prompts": 1}

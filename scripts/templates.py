@@ -20,14 +20,14 @@ def initialize_templates():
         else:
             print(file + " already exists")
 
-def add_to_template(newline, target):
+def add_to_template(line, target):
     # add a new line to a template file
     # newline: string to add to the template
     # target: name of the template file to add to
     with open('templates/' + target + '.txt', 'a') as f:
-        f.write(newline + '\n')
-        print("Added '" + newline + "' to " + target)
-    clean_template(target)
+        f.write(line + '\n')
+        print("Added '" + line + "' to " + target)
+    return clean_template(target) #return length for message
 
 def remove_from_template(line, target):
     with open('templates/' + target + '.txt', 'r') as f:
@@ -52,8 +52,9 @@ def clean_template(target):
     with open('templates/' + target + '.txt', 'w') as f:
         for l in cleaned:
             f.write(l)
-
     print("Cleaned " + target)
+    #return length for message
+    return len(cleaned)
 
 def to_lower(target):
     # convert all lines in a template file to lowercase
@@ -101,7 +102,7 @@ def auto_import():
 
     print("Auto-import complete")
 
-def build_random_message():
+def build_random_message(setting):
     # build a random message from the templates
     with open('templates/intros.txt', 'r') as f:
         intros = f.readlines()
@@ -112,7 +113,7 @@ def build_random_message():
     intro = random.choice(intros).strip("\n")
     descriptor = random.choice(descriptors).strip("\n")
     # 25% chance to add another descriptor, repeating until it doesn't
-    while random.randint(1,4) == 1:
+    while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
         descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
     subject = random.choice(subjects).strip("\n")
     message = intro + ": `" + descriptor + " " + subject + "`"

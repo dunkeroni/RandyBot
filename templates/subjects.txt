@@ -21,6 +21,7 @@ bigfoot
 blt sandwich
 blue whale
 boa constrictor
+bodybuilder
 burrito
 bus driver
 butterfly
@@ -117,6 +118,7 @@ librarian
 lion
 lizard
 lizardman
+lumberjack
 marmoset
 mechanic
 medusa
@@ -124,6 +126,7 @@ meerkat
 mermaid
 merman
 minotaur
+moth
 mothman
 mummy
 notebook

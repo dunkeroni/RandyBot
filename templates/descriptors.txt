@@ -35,6 +35,7 @@ bubbly
 bumpy
 cactus
 calligraphy
+candy
 carbon fiber
 caring
 celestial
@@ -126,6 +127,7 @@ flaky
 flimsy
 fluffy
 found object art
+fractal
 fragile
 fresco
 fresco painting
@@ -160,6 +162,7 @@ gritty realism
 grooved
 hairy
 hallowed
+hallucination
 hand made
 hessian
 hierarchical

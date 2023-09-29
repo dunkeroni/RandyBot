@@ -1,13 +1,13 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-import random
 import os
 from dotenv import load_dotenv
 import logging
 from scripts.settings import get_settings, save_settings
 import scripts.templates as templates
 import asyncio
+
 
 load_dotenv()
 # These are the environment variables that need to be set in .env, not included in repo
@@ -48,7 +48,7 @@ async def send_periodically():
         channel = Bot.get_channel(int(setting["channel_id"]))
         if setting["active"]:
             print("Sending message...")
-            message = templates.build_random_message()
+            message = templates.build_random_message(setting)
             await channel.send(message)
             print(message)
         #wait 10 seconds at a time until the timer is up
@@ -71,9 +71,9 @@ async def is_in_server_list(ctx: discord.Interaction):
     app_commands.Choice(name="intros", value="intros")
 ])
 async def randy_add(Interaction: discord.Interaction, target: str, line: str):
-    templates.add_to_template(line, target)
+    total = templates.add_to_template(line, target)
     channel = Bot.get_channel(int(setting["channel_id"]))
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target, color=0x00ff00), ephemeral=True)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target + ".\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
     await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list.")
 
 @Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
@@ -89,14 +89,6 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
     channel = Bot.get_channel(int(setting["channel_id"]))
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed '" + line + "' from " + target, color=0x00ff00), ephemeral=True)
     await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.")
-
-@Bot.tree.command(name="randyspeed", description="Change the posting speed of RandyBOT")
-@app_commands.check(is_in_server_list)
-@app_commands.describe(speed="How often RandyBOT should post, in seconds")
-async def randy_speed(Interaction: discord.Interaction, speed: int):
-    setting["posting_timer"] = speed
-    save_settings(setting)
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed posting speed to " + str(speed) + " seconds", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
 @app_commands.check(is_in_server_list)
@@ -121,5 +113,24 @@ async def randy_deactivate(Interaction: discord.Interaction):
     setting["active"] = False
     save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Deactivated RandyBOT", color=0x00ff00), ephemeral=True)
+
+@Bot.tree.command(name="randysetting", description="Adjust RandyBOT settings")
+@app_commands.check(is_in_server_list)
+@app_commands.describe(setting_name="Which setting to change")
+@app_commands.choices(setting_name =[
+    app_commands.Choice(name="Posting Rate (s)", value="posting_timer"),
+    app_commands.Choice(name="Descriptor Recursion Chance (1/X)", value="repetition_odds"),
+    app_commands.Choice(name="Max Prompt Length (characters)", value="max_length"),
+    app_commands.Choice(name="Number of Prompts", value="num_prompts")
+])
+async def randy_settings(Interaction: discord.Interaction, setting_name: str, value: str):
+    try:
+        setting[setting_name] = int(value)
+        print("Changed " + setting_name + " to " + str(setting[setting_name]))
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed " + setting_name + " to " + str(setting[setting_name]), color=0x00ff00), ephemeral=True)
+        setting = save_settings(setting) #save settings, correct any invalid values
+    except Exception as e:
+        print(e)
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to change " + setting_name + " to " + value, color=0xff0000), ephemeral=True)
 
 Bot.run(TOKEN, log_handler=handler)
