@@ -16,11 +16,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 
 intents = discord.Intents.default()
-intents.typing = False
-intents.presences = False
-intents.messages = True
-intents.guilds = True
-intents.message_content = True
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
 setting = get_settings()
@@ -63,6 +58,7 @@ async def is_in_server_list(ctx: discord.Interaction):
     return (ctx.guild_id in setting["server_whitelist"]) or setting["server_whitelist"] == []
 
 @Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 @app_commands.describe(target="Which list to add the new line to")
 @app_commands.choices(target =[
@@ -77,6 +73,7 @@ async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target)
 
 @Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 @app_commands.describe(target="Which list to remove the line from")
 @app_commands.choices(target =[
@@ -94,6 +91,7 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
     await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target)
 
 @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 async def randy_random(Interaction: discord.Interaction):
     channel = Bot.get_channel(int(setting["channel_id"]))
@@ -102,6 +100,7 @@ async def randy_random(Interaction: discord.Interaction):
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyactivate", description="Activate RandyBOT in this channel. Hijacks from previous location.")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 async def randy_activate(Interaction: discord.Interaction):
     setting["channel_id"] = Interaction.channel.id
@@ -111,6 +110,7 @@ async def randy_activate(Interaction: discord.Interaction):
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Activated RandyBOT in this channel", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randydeactivate", description="Deactivate RandyBOT.")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 async def randy_deactivate(Interaction: discord.Interaction):
     setting["active"] = False
@@ -118,6 +118,7 @@ async def randy_deactivate(Interaction: discord.Interaction):
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Deactivated RandyBOT", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randysetting", description="Adjust RandyBOT settings")
+@app_commands.default_permissions(manage_messages=True)
 @app_commands.check(is_in_server_list)
 @app_commands.describe(setting_name="Which setting to change")
 @app_commands.choices(setting_name =[
