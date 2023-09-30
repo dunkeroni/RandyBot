@@ -111,11 +111,13 @@ def build_random_message(setting):
     with open('templates/subjects.txt', 'r') as f:
         subjects = f.readlines()
     intro = random.choice(intros).strip("\n")
-    descriptor = random.choice(descriptors).strip("\n")
-    # 25% chance to add another descriptor, repeating until it doesn't
-    if setting["repetition_odds"] > 0:
-        while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
-            descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
-    subject = random.choice(subjects).strip("\n")
-    message = intro + ": `" + descriptor + " " + subject + "`"
+    message = "## " + intro + ":"
+    for i in range(setting["num_prompts"]):
+        descriptor = random.choice(descriptors).strip("\n")
+        # 25% chance to add another descriptor, repeating until it doesn't
+        if setting["repetition_odds"] > 0:
+            while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
+                descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
+        subject = random.choice(subjects).strip("\n")
+        message = message + "\n" + "* " + descriptor + " " + subject
     return message
