@@ -23,7 +23,6 @@ intents.guilds = True
 intents.message_content = True
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
-global setting 
 setting = get_settings()
 
 @Bot.event
@@ -86,34 +85,34 @@ async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     app_commands.Choice(name="intros", value="intros")
 ])
 async def randy_remove(Interaction: discord.Interaction, target: str, line: str):
-    templates.remove_from_template(line, target)
+    total = templates.remove_from_template(line, target)
     channel = Bot.get_channel(int(setting["channel_id"]))
+    if total == -1:
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
+        return
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed '" + line + "' from " + target, color=0x00ff00), ephemeral=True)
-    await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.")
+    await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target)
 
 @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
 @app_commands.check(is_in_server_list)
 async def randy_random(Interaction: discord.Interaction):
-    global setting
     channel = Bot.get_channel(int(setting["channel_id"]))
-    message = templates.build_random_message()
+    message = templates.build_random_message(setting)
     await channel.send(message)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyactivate", description="Activate RandyBOT in this channel. Hijacks from previous location.")
 @app_commands.check(is_in_server_list)
 async def randy_activate(Interaction: discord.Interaction):
-    global setting
     setting["channel_id"] = Interaction.channel.id
     print("Attaching to channel " + str(Interaction.channel.id))
     setting["active"] = True
-    setting = save_settings(setting)
+    save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Activated RandyBOT in this channel", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randydeactivate", description="Deactivate RandyBOT.")
 @app_commands.check(is_in_server_list)
 async def randy_deactivate(Interaction: discord.Interaction):
-    global setting
     setting["active"] = False
     save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Deactivated RandyBOT", color=0x00ff00), ephemeral=True)
@@ -128,12 +127,11 @@ async def randy_deactivate(Interaction: discord.Interaction):
     app_commands.Choice(name="Number of Prompts", value="num_prompts")
 ])
 async def randy_settings(Interaction: discord.Interaction, setting_name: str, value: str):
-    global setting
     try:
         setting[setting_name] = int(value)
         print("Changed " + setting_name + " to " + str(setting[setting_name]))
+        save_settings(setting) #save settings, correct any invalid values
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed " + setting_name + " to " + str(setting[setting_name]), color=0x00ff00), ephemeral=True)
-        setting = save_settings(setting) #save settings, correct any invalid values
     except Exception as e:
         print(e)
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to change " + setting_name + " to " + value, color=0xff0000), ephemeral=True)

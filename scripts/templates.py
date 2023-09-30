@@ -32,11 +32,20 @@ def add_to_template(line, target):
 def remove_from_template(line, target):
     with open('templates/' + target + '.txt', 'r') as f:
         lines = f.readlines()
+
+    found = False
     with open('templates/' + target + '.txt', 'w') as f:
         for l in lines:
             if l.strip("\n") != line:
                 f.write(l)
+            else:
+                found = True
+    if not found:
+        print("Could not find '" + line + "' in " + target)
+        return -1
+    else:
         print("Removed " + line + " from " + target)
+    return clean_template(target) #return length for message
 
 def clean_template(target):
     # remove any empty lines from a template file    
@@ -111,7 +120,7 @@ def build_random_message(setting):
     with open('templates/subjects.txt', 'r') as f:
         subjects = f.readlines()
     intro = random.choice(intros).strip("\n")
-    message = "## " + intro + ":"
+    message = "### " + intro + ":"
     for i in range(setting["num_prompts"]):
         descriptor = random.choice(descriptors).strip("\n")
         # 25% chance to add another descriptor, repeating until it doesn't
@@ -119,5 +128,5 @@ def build_random_message(setting):
             while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
                 descriptor = descriptor + ", " + random.choice(descriptors).strip("\n")
         subject = random.choice(subjects).strip("\n")
-        message = message + "\n" + "* " + descriptor + " " + subject
+        message = message + "\n* " + descriptor + " " + subject
     return message

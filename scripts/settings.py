@@ -31,13 +31,9 @@ def save_settings(setting):
     print("Saving settings...")
     #sanity check values in settings
     setting["posting_timer"] = max(int(setting["posting_timer"]), 10)
-    setting["repetition_odds"] = min(int(setting["repetition_odds"]), 0)
-    setting["max_length"] = max(int(setting["max_length"]), 400)
+    setting["repetition_odds"] = max(int(setting["repetition_odds"]), 0)
+    setting["max_length"] = min(int(setting["max_length"]), 400)
     setting["num_prompts"] = min(int(setting["num_prompts"]), 20)
     # Write settings.json
     with open('settings.json', 'w') as f:
         json.dump(setting, f)
-    
-    return setting
-
-    
