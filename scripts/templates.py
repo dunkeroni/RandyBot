@@ -24,10 +24,18 @@ def add_to_template(line, target):
     # add a new line to a template file
     # newline: string to add to the template
     # target: name of the template file to add to
+    with open('templates/' + target + '.txt', 'r') as f:
+        lines = f.readlines()
+    total1 = len(lines)
     with open('templates/' + target + '.txt', 'a') as f:
         f.write(line + '\n')
         print("Added '" + line + "' to " + target)
-    return clean_template(target) #return length for message
+    total2 = clean_template(target) #return length for message
+    if total2 > total1:
+        return total2
+    else:
+        print("Failed to add '" + line + "' to " + target)
+        return -1
 
 def remove_from_template(line, target):
     with open('templates/' + target + '.txt', 'r') as f:

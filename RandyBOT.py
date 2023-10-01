@@ -69,6 +69,9 @@ async def is_in_server_list(ctx: discord.Interaction):
 async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     total = templates.add_to_template(line, target)
     channel = Bot.get_channel(int(setting["channel_id"]))
+    if total == -1:
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="'" + line + "' already exists in " + target, color=0xff0000), ephemeral=True)
+        return
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target, color=0x00ff00), ephemeral=True)
     await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target)
 
@@ -96,8 +99,12 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
 async def randy_random(Interaction: discord.Interaction):
     channel = Bot.get_channel(int(setting["channel_id"]))
     message = templates.build_random_message(setting)
-    await channel.send(message)
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
+    try:
+        await channel.send(message)
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
+    except Exception as e:
+        print(e)
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to send message", color=0xff0000), ephemeral=True)
 
 @Bot.tree.command(name="randyactivate", description="Activate RandyBOT in this channel. Hijacks from previous location.")
 @app_commands.default_permissions(manage_messages=True)

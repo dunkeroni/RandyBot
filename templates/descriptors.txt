@@ -1,0 +1,423 @@
+abstract
+abstract impressionism
+acrylic
+acrylic painting
+adaptable
+airbrushed
+alchemical
+amazing quality, best quality, high quality, highest quality, masterpiece, amazing art, incredible digital art, perfect quality, absurdres, beautiful, nice quality, good quality, great quality, excellent quality
+ambient lighting
+ambitious
+ancestral
+anime
+apocalyptic
+arcane
+archaeological
+art deco
+art nouveau
+astral
+astronaut
+aurora borealis
+avian
+azure
+bacon
+baroque
+beaded
+beige
+bioluminescent
+biomechanical
+black
+blown glass
+blue
+bokeh
+brown
+bubbly
+bumpy
+cactus
+calligraphy
+candy
+carbon fiber
+caring
+celestial
+ceramic
+cerulean
+chalk art
+charcoal
+charismatic
+chartreuse
+cheerful
+chiaroscuro
+chiseled
+cinematic
+clay sculpture
+clockwork
+clown
+coarse
+cobalt
+collage
+collagraphy
+colored pencil
+compassionate
+confident
+considerate
+constructivism
+coral
+corded
+corduroy
+cosmic
+courageous
+cowboy
+cowgirl
+crab
+craggy
+cream
+creative
+crimson
+crinkled
+crispy
+crosshatch
+crystaline
+crystalized
+cubism
+cupcake
+cursed
+cyan
+cyanotype
+cybernetic
+cyborg
+dappled
+demonic
+dented
+digital art
+digital calligraphy
+digital collage
+digital sculpture
+dinosaur
+disco
+double exposure
+dry
+dull
+dwarven
+dystopian
+eccentric
+eggshell mosaic
+elastic
+eldritch
+elemental
+embossed
+embroidered
+empathetic
+empowering
+enamel
+energetic
+enigmatic
+enthusiastic
+etching
+ethereal
+exoplanetary
+exotic
+extraterrestrial
+fae
+fantasy-punk
+felt diorama
+felted
+fibrous
+fire and ice
+fire elemental
+flaky
+flimsy
+fluffy
+found object art
+fractal
+fragile
+fresco
+fresco painting
+fresco secco
+friendly
+fringed
+futanari
+futurism
+futuristic
+fuzzy
+galactic
+generous
+geometric
+ghost
+ghostly
+glassblowing
+glassy
+glitch art
+glitter
+gold
+gossamer
+gothic
+graffiti
+grained
+granular
+gravelly
+gray
+grayscale
+greasy
+green
+greeting card
+greyscale
+gritty realism
+grooved
+hairy
+hallowed
+hallucination
+hand made
+hessian
+hierarchical
+hieroglyphic
+high contrast
+holographic
+honest
+humble
+hyper-realistic
+ice elemental
+ice sculpture
+impasto
+impressionistic
+indigo
+inflatable
+infrared
+ink drawing
+inscrutable
+inspiring
+intelligent
+interdimensional
+intriguing
+iridescent
+jagged
+japanese ink painting
+jellybean
+kaleidoscopic
+kind
+kinetic
+knitted
+knotty
+knurled
+labyrinthine
+lacy
+land art
+lava lamp
+lavender
+leatherwork
+linocut
+lithography
+llama
+low poly
+loyal
+luminous
+lustrous
+macro
+macro photograph
+magician
+marble statue
+marigold
+matte
+matted
+mauve
+mecha
+mechanical
+mesmerizing
+mesopotamian
+metallic
+metalwork
+military
+minimalism
+minimalist
+mixed media
+monochrome
+monotype
+mosaic
+mossy
+motion blur
+mottled
+mysterious
+mythical
+mythological
+napped
+nebulous
+negative
+neon
+neon art
+ninja
+nomadic
+nubby
+occult
+oil painting
+olive
+op art
+optical art
+optical illusion
+optimistic
+orange
+orchid
+origami
+pagan
+pajama
+pancake
+paper mache
+parchment illumination
+pastel
+patient
+peanut
+pebbled
+pebbly
+pencil sketch
+periwinkle
+photorealistic
+pickled
+pink
+pirate
+pistachio
+pixel art
+plaster casting
+plastic
+pliable
+pockmarked
+pointillism
+polished
+polymer clay
+pop art
+popcorn
+post-apocalyptic
+potato
+pottery
+prickly
+printmaking
+prism
+prismatic
+psychedelic
+puffy
+puppet
+purple
+quilted
+quilting
+quizzical
+rainbow
+realism
+realistic
+red
+reflection
+reliable
+renaissance
+resilient
+retro
+retro-futuristic
+ribbed
+robot
+rococo
+ropy
+rough
+ruffled
+rugged
+sage
+samurai
+sand
+sand art
+sand casting
+satin
+scaled
+scaly
+screen printing
+scuffed
+secret agent
+serpentine
+sexy
+shaggy
+shamanic
+sienna
+silhouette
+silky
+silver
+sinuous
+sleek
+slender
+slick
+slimy
+slubby
+smooth
+sock
+soft
+solar flare
+solar powered
+sorceress
+spacefaring
+sparkling
+spongy
+stained
+stained glass
+steampunk
+street art
+string art
+stubby
+suede
+sunset
+supernatural
+supernova
+supple
+supportive
+suprematism
+surreal
+symbiotic
+tacky
+tactile
+tangerine
+tangled
+tapestry
+tattooed
+teal
+tenacious
+textile
+textured
+thorny
+thoughtful
+threadbare
+tilt-shift
+time-looping
+time-traveling
+timeless
+torn paper collage
+transcendent
+tribal
+turquoise
+twisted
+ufo
+ultramarine
+urban
+utopian
+vampire
+vaporous
+veined
+velour
+velvet
+vermilion
+vexel art
+victorian
+viking
+vintage
+viscous
+voluptuous
+waffle
+water elemental
+watercolor
+watercolor painting
+waxy
+white
+wind elemental
+wire jewelry
+wire sculpture
+wiry
+wise
+wood carving
+wood engraving
+woodcut
+woodworking
+worn
+woven
+wrinkled
+yellow
+zombie
