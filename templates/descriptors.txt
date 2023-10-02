@@ -1,35 +1,47 @@
+14th century
 abstract
 abstract impressionism
+abyssal
 acrylic
 acrylic painting
 adaptable
 airbrushed
 alchemical
+alluring
 amazing quality, best quality, high quality, highest quality, masterpiece, amazing art, incredible digital art, perfect quality, absurdres, beautiful, nice quality, good quality, great quality, excellent quality
 ambient lighting
 ambitious
 ancestral
 anime
 apocalyptic
+aquatic
 arcane
 archaeological
+archer
+arctic
 art deco
 art nouveau
 astral
 astronaut
+atomic
 aurora borealis
 avian
 azure
 bacon
 baroque
 beaded
+beastial
 beige
+bespectacled
 bioluminescent
 biomechanical
 black
+blindfolded
 blown glass
 blue
 bokeh
+boss
+bovine/cow
 brown
 bubbly
 bumpy
@@ -38,6 +50,7 @@ calligraphy
 candy
 carbon fiber
 caring
+cat-eared
 celestial
 ceramic
 cerulean
@@ -78,23 +91,32 @@ crispy
 crosshatch
 crystaline
 crystalized
+cthonic
 cubism
 cupcake
 cursed
 cyan
 cyanotype
 cybernetic
+cyberpunk
 cyborg
 dappled
+deep
 demonic
 dented
+destructive
 digital art
 digital calligraphy
 digital collage
 digital sculpture
 dinosaur
 disco
+diverse group of
+divine
+dominant
 double exposure
+draconic
+druidic
 dry
 dull
 dwarven
@@ -112,12 +134,18 @@ enamel
 energetic
 enigmatic
 enthusiastic
+enticing
 etching
 ethereal
+evil
+exhausted
 exoplanetary
 exotic
+explosive
 extraterrestrial
+fabulous
 fae
+fantasy
 fantasy-punk
 felt diorama
 felted
@@ -125,8 +153,13 @@ fibrous
 fire and ice
 fire elemental
 flaky
+flaming
+flat chested
 flimsy
+floral
 fluffy
+forest
+forged
 found object art
 fractal
 fragile
@@ -140,7 +173,9 @@ futurism
 futuristic
 fuzzy
 galactic
+gamepiece
 generous
+geological
 geometric
 ghost
 ghostly
@@ -148,6 +183,7 @@ glassblowing
 glassy
 glitch art
 glitter
+god of the
 gold
 gossamer
 gothic
@@ -166,13 +202,18 @@ grooved
 hairy
 hallowed
 hallucination
+haloed
 hand made
+heavenly
+heroic
 hessian
 hierarchical
 hieroglyphic
 high contrast
 holographic
 honest
+horrific
+huge
 humble
 hyper-realistic
 ice elemental
@@ -201,18 +242,24 @@ knurled
 labyrinthine
 lacy
 land art
+lava
 lava lamp
 lavender
+leafy
 leatherwork
 linocut
+liquid metal
+lithe
 lithography
 llama
 low poly
 loyal
 luminous
+lunar
 lustrous
 macro
 macro photograph
+madness
 magician
 marble statue
 marigold
@@ -221,6 +268,7 @@ matted
 mauve
 mecha
 mechanical
+merciful
 mesmerizing
 mesopotamian
 metallic
@@ -247,8 +295,10 @@ ninja
 nomadic
 nubby
 occult
+office
 oil painting
 olive
+olympian
 op art
 optical art
 optical illusion
@@ -256,6 +306,8 @@ optimistic
 orange
 orchid
 origami
+ossuary
+otherworldly
 pagan
 pajama
 pancake
@@ -290,6 +342,7 @@ prickly
 printmaking
 prism
 prismatic
+prophetic
 psychedelic
 puffy
 puppet
@@ -309,6 +362,7 @@ retro
 retro-futuristic
 ribbed
 robot
+robotic
 rococo
 ropy
 rough
@@ -322,17 +376,23 @@ sand casting
 satin
 scaled
 scaly
+scholarly
 screen printing
 scuffed
 secret agent
+seductive
 serpentine
 sexy
+shadowy
 shaggy
 shamanic
+sharp
+showering
 sienna
 silhouette
 silky
 silver
+sinister
 sinuous
 sleek
 slender
@@ -340,18 +400,24 @@ slick
 slimy
 slubby
 smooth
-sock
+smug
 soft
+solar
 solar flare
 solar powered
+solemn
 sorceress
 spacefaring
 sparkling
 spongy
+spooky
 stained
 stained glass
 steampunk
+stone
+storm
 street art
+street fashion
 string art
 stubby
 suede
@@ -362,6 +428,7 @@ supple
 supportive
 suprematism
 surreal
+sweaty
 symbiotic
 tacky
 tactile
@@ -370,23 +437,36 @@ tangled
 tapestry
 tattooed
 teal
+temperate
+temporal/time
+ten-inch
 tenacious
 textile
 textured
+the last supper
+theatrical
 thorny
 thoughtful
 threadbare
+tibetan
 tilt-shift
 time-looping
 time-traveling
 timeless
+torn clothing
 torn paper collage
+trans
 transcendent
+treacherous
 tribal
+tropical
 turquoise
+twin
 twisted
+two-tone countershade
 ufo
 ultramarine
+unruly
 urban
 utopian
 vampire
@@ -406,7 +486,9 @@ water elemental
 watercolor
 watercolor painting
 waxy
+wet
 white
+wilderness
 wind elemental
 wire jewelry
 wire sculpture

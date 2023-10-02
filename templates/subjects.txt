@@ -1,21 +1,28 @@
 accountant
-ahuizotl
+acolyte
 alarm clock
 alligator
 angel
 angelic being
 ant
+archmage
 armadillo
+assassin
+astronaught
 backpack
 baked salmon
 bald eagle
+bandit
 banshee
 barber
+bard
+barista
 basilisk
 bear
 beaver
 bee
 belly dancer
+berserker
 bicycle
 bigfoot
 blacksmith
@@ -23,10 +30,12 @@ blt sandwich
 blue whale
 boa constrictor
 bodybuilder
+bugbear
 burrito
 bus driver
 butterfly
 capybara
+car
 carpenter
 cashier
 cat
@@ -41,8 +50,12 @@ chupacabra
 clownfish
 coffee maker
 coffee mug
+commoner
 cow
 crocodile
+crow
+cult fanatic
+cultist
 cyclops
 deer
 demon
@@ -52,7 +65,9 @@ dog
 dolphin
 dragon
 dragonfly
+druid
 duck
+duergar
 dwarf
 eggs benedict
 electrician
@@ -62,8 +77,10 @@ engineer
 faerie dragon
 fairy
 falcon
+fantasy world
 farmer
 firefighter
+fisherman
 flamingo
 fox
 frankenstein's monster
@@ -74,8 +91,11 @@ gecko
 genie
 ghost
 giraffe
+gladiator
+gnoll
 gnome
 goblin
+goblin chieftan
 goldfish
 golem
 gorilla
@@ -83,6 +103,7 @@ grasshopper
 great white shark
 griffin
 grocery store
+guard
 hairbrush
 hammerhead shark
 harlequin
@@ -91,13 +112,16 @@ heron
 hippocampus
 hippogriff
 hobbit
+hobgoblin
+honkers
 horse
 hotdog
-hulder
+housemaid
 hummingbird
 humpback whale
 hyena
 iguana
+isopod
 jackalope
 janitor
 jellyfish
@@ -106,32 +130,50 @@ journalist
 journey
 kangaroo
 kappa
+kenku
 keychain
 kitchen knife
 kitsune
+knight
 koala
+kobold
 komodo dragon
 kraken
+kuo-toa
 ladybug
+landscape view
 lawyer
 lemur
 leprechaun
 librarian
+lingerie
 lion
 lizard
+lizard king
+lizard queen
+lizardfolk
 lizardman
 lumberjack
+mage
 marmoset
+mask
 mechanic
 medusa
 meerkat
+merfolk
 mermaid
 merman
+milf
 minotaur
+monk
+morrigan
 moth
 mothman
 mummy
+noble
+nomad
 notebook
+nun
 nurse
 nymph
 octopus
@@ -139,10 +181,12 @@ ogre
 opossum
 orangutan
 orc
+orc war chief
 otter
 owl
 panda
 parrot
+party
 peacock
 pegasus
 pelican
@@ -152,6 +196,7 @@ penguin
 perspicacity
 phoenix
 photographer
+pianist
 pilot
 pizza
 platypus
@@ -159,12 +204,18 @@ plumber
 pole dancer
 police officer
 porcupine
+priest
+princess peach
 pukwudgie
 puppet
+quaggoth
+queen
 quesadilla
 rabbit
 raccoon
 rattlesnake
+raygun
+reaper
 receptionist
 redheaded elf
 refrigerator
@@ -175,9 +226,13 @@ salmon
 samurai
 satanic creature
 satyr
+scales
+scout
+scroll
 sea turtle
 seagull
 seahorse
+seashell
 selkie
 shrimp po' boy
 siren
@@ -194,14 +249,20 @@ soldier
 sorcerer
 sorceress
 spaghetti carbonara
+spider queen
 spider woman
+spy
 squirrel
 stapler
 starfish
+starship captain
 starship engineer
+streamer
+street vendor
 stripper
 sunglasses
 sushi rolls
+svirfneblin
 swan
 tacos
 taniwha
@@ -209,30 +270,35 @@ tanuki
 tapir
 tasmanian devil
 television
+thug
 thunderbird
 tiger
+tit bird
 toad
 toaster
 tofu stir-fry
+tomboy woman
 toothbrush
 tornado
 tortoise
 trash can
+troglodytecupcake
 troll
 trout
 turtle
 umbrella
 unicorn
+universe
 vacuum cleaner
 valkyrie
 vampire
 waiter
 waitress
 wallet
+warrior
 warthog
 water bottle
 weave
-wendigo
 werewolf
 whale
 witch
@@ -240,4 +306,5 @@ wizard
 wraith
 yeti
 zebra
+zero suit samus
 zombie

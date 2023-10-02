@@ -68,12 +68,10 @@ async def is_in_server_list(ctx: discord.Interaction):
 ])
 async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     total = templates.add_to_template(line, target)
-    channel = Bot.get_channel(int(setting["channel_id"]))
     if total == -1:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="'" + line + "' already exists in " + target, color=0xff0000), ephemeral=True)
         return
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added '" + line + "' to " + target, color=0x00ff00), ephemeral=True)
-    await channel.send(Interaction.user.name + " added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
 @app_commands.default_permissions(manage_messages=True)
@@ -86,12 +84,10 @@ async def randy_add(Interaction: discord.Interaction, target: str, line: str):
 ])
 async def randy_remove(Interaction: discord.Interaction, target: str, line: str):
     total = templates.remove_from_template(line, target)
-    channel = Bot.get_channel(int(setting["channel_id"]))
     if total == -1:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
         return
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed '" + line + "' from " + target, color=0x00ff00), ephemeral=True)
-    await channel.send(Interaction.user.name + " removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
 @app_commands.default_permissions(manage_messages=True)
@@ -143,5 +139,24 @@ async def randy_settings(Interaction: discord.Interaction, setting_name: str, va
     except Exception as e:
         print(e)
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to change " + setting_name + " to " + value, color=0xff0000), ephemeral=True)
+
+#randy info command
+@Bot.tree.command(name="randyinfo", description="Get info about RandyBOT")
+@app_commands.check(is_in_server_list)
+async def randy_info(Interaction: discord.Interaction):
+    desc = """A bot that generates random prompts for the requests channel.
+    Community Watch roles and up can control this bot and add/remove works from the prompt lists.
+    If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord.
+    """
+    embed = discord.Embed(title="RandyBOT", description=desc, color=0x00ff00)
+    embed.add_field(name="Source Code:", value="https://github.com/dunkeroni/RandyBot", inline=False)
+    embed.add_field(name="Current message rate:", value=str(setting["posting_timer"]) + " seconds", inline=False)
+    embed.add_field(name="Prompts per message:", value=str(setting["num_prompts"]), inline=False)
+    embed.add_field(name="Consecutive descriptor chance:", value="1 in " + str(setting["repetition_odds"]), inline=False)
+    embed.add_field(name="Active:", value=str(setting["active"]), inline=False)
+
+    await Interaction.response.send_message(content=None, embed=embed, ephemeral=True)
+
+
 
 Bot.run(TOKEN, log_handler=handler)

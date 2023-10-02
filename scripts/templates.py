@@ -63,6 +63,8 @@ def clean_template(target):
     cleaned = set() # 'not in' boolean check wasn't working for me
     for l in lines:
         if l.strip("\n") != "":
+            if target != 'intros':
+                l = l.lower() #convert to lowercase only when not intros list
             cleaned.add(l)
     cleaned = list(cleaned)
     cleaned.sort()
@@ -72,14 +74,6 @@ def clean_template(target):
     print("Cleaned " + target)
     #return length for message
     return len(cleaned)
-
-def to_lower(target):
-    # convert all lines in a template file to lowercase
-    with open('templates/' + target + '.txt', 'r') as f:
-        lines = f.readlines()
-    with open('templates/' + target + '.txt', 'w') as f:
-        for l in lines:
-            f.write(l.lower())
 
 def auto_import():
     #add template lines from autoimport/descriptors/ folder to descriptors.txt
@@ -109,9 +103,6 @@ def auto_import():
             #delete the file after importing
             os.remove('autoimport/intros/' + file)
 
-    #convert to lowercase, intros remain capitalized
-    to_lower('descriptors')
-    to_lower('subjects')
     #clean templates
     clean_template('descriptors')
     clean_template('subjects')
