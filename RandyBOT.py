@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import logging
 from scripts.settings import get_settings, save_settings
+from TemplatePicker import templatePicker
 import scripts.templates as templates
 import asyncio
 
@@ -18,6 +19,7 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 intents = discord.Intents.default()
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
+tp = templatePicker()
 setting = get_settings()
 
 @Bot.event
@@ -35,6 +37,13 @@ async def on_ready():
         print(e)
 
     Bot.loop.create_task(send_periodically())
+    Bot.loop.create_task(periodic_save())
+
+@Bot.event
+async def periodic_save():
+    while True:
+        await asyncio.sleep(30)
+        tp.save_templates()
 
 @Bot.event
 async def send_periodically():
@@ -155,8 +164,11 @@ async def randy_info(Interaction: discord.Interaction):
     embed.add_field(name="Consecutive descriptor chance:", value="1 in " + str(setting["repetition_odds"]), inline=False)
     embed.add_field(name="Active:", value=str(setting["active"]), inline=False)
 
+    length = tp.info()
+    embed.add_field(name="Descriptors:", value=str(length["descriptors"]), inline=True)
+    embed.add_field(name="Subjects:", value=str(length["subjects"]), inline=True)
+    embed.add_field(name="Intros:", value=str(length["intros"]), inline=True)
+
     await Interaction.response.send_message(content=None, embed=embed, ephemeral=True)
-
-
 
 Bot.run(TOKEN, log_handler=handler)
