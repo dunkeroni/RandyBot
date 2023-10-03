@@ -7,6 +7,7 @@ class templatePicker():
         self.templates["descriptors"] = set()
         self.templates["subjects"] = set()
         self.templates["intros"] = set()
+        self.listsupdated = False
         self.load_templates()
 
     def load_templates(self):
@@ -31,6 +32,12 @@ class templatePicker():
         #descriptors.txt
         #subjects.txt
         #intros.txt
+
+        #if lists weren't updated, don't save
+        if not self.listsupdated:
+            print("No changes to save")
+            return
+        self.listsupdated = False
         
         #first convert to lists and sort, convert to lowercase for descriptors and subjects
         descriptors = list(self.templates["descriptors"])
@@ -92,6 +99,7 @@ class templatePicker():
         #add a line to a template
         #target is descriptors, subjects, or intros
         #convert to lowercase for descriptors and subjects
+        self.listsupdated = True
         if target == 'descriptors' or target == 'subjects':
             line = line.lower()
         self.templates[target].add(line)
@@ -102,6 +110,7 @@ class templatePicker():
         #remove a line from a template
         #target is descriptors, subjects, or intros
         #convert to lowercase for descriptors and subjects
+        self.listsupdated = True
         if target == 'descriptors' or target == 'subjects':
             line = line.lower()
         if line in self.templates[target]:
