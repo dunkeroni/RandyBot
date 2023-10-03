@@ -114,15 +114,19 @@ class templatePicker():
 
     def build_random_message(self, setting: dict):
         # build a random message from the templates
-        intro = random.choice(self.templates["intros"])
+        intros = list(self.templates["intros"])
+        descriptors = list(self.templates["descriptors"])
+        subjects = list(self.templates["subjects"])
+
+        intro = random.choice(intros)
         message = "### " + intro + ":"
         for i in range(setting["num_prompts"]):
-            descriptor = random.choice(self.templates["intros"])
+            descriptor = random.choice(descriptors)
             # % chance to add another descriptor, repeating until it doesn't
             if setting["repetition_odds"] > 0:
                 while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
-                    descriptor = descriptor + ", " + random.choice(self.templates["intros"])
-            subject = random.choice(self.templates["subjects"])
+                    descriptor = descriptor + ", " + random.choice(descriptors)
+            subject = random.choice(subjects)
             message = message + "\n* " + descriptor + " " + subject
         return message
 
