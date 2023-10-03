@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import logging
 from scripts.settings import get_settings, save_settings
+from TemplatePicker import templatePicker
 import scripts.templates as templates
 import asyncio
 
@@ -18,6 +19,7 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 intents = discord.Intents.default()
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
+tp = templatePicker()
 setting = get_settings()
 
 @Bot.event
@@ -35,6 +37,13 @@ async def on_ready():
         print(e)
 
     Bot.loop.create_task(send_periodically())
+    Bot.loop.create_task(periodic_save())
+
+@Bot.event
+async def periodic_save():
+    while True:
+        await asyncio.sleep(600)
+        tp.save_templates()
 
 @Bot.event
 async def send_periodically():
@@ -43,7 +52,7 @@ async def send_periodically():
         channel = Bot.get_channel(int(setting["channel_id"]))
         if setting["active"]:
             print("Sending message...")
-            message = templates.build_random_message(setting)
+            message = tp.build_random_message(setting)
             await channel.send(message)
             print(message)
         #wait 10 seconds at a time until the timer is up
@@ -67,7 +76,7 @@ async def is_in_server_list(ctx: discord.Interaction):
     app_commands.Choice(name="intros", value="intros")
 ])
 async def randy_add(Interaction: discord.Interaction, target: str, line: str):
-    total = templates.add_to_template(line, target)
+    total = tp.add_to_template(line, target)
     if total == -1:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="'" + line + "' already exists in " + target, color=0xff0000), ephemeral=True)
         return
@@ -83,7 +92,7 @@ async def randy_add(Interaction: discord.Interaction, target: str, line: str):
     app_commands.Choice(name="intros", value="intros")
 ])
 async def randy_remove(Interaction: discord.Interaction, target: str, line: str):
-    total = templates.remove_from_template(line, target)
+    total = tp.remove_from_template(line, target)
     if total == -1:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
         return
@@ -94,7 +103,7 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
 @app_commands.check(is_in_server_list)
 async def randy_random(Interaction: discord.Interaction):
     channel = Bot.get_channel(int(setting["channel_id"]))
-    message = templates.build_random_message(setting)
+    message = tp.build_random_message(setting)
     try:
         await channel.send(message)
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
@@ -141,22 +150,30 @@ async def randy_settings(Interaction: discord.Interaction, setting_name: str, va
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to change " + setting_name + " to " + value, color=0xff0000), ephemeral=True)
 
 #randy info command
-@Bot.tree.command(name="randyinfo", description="Get info about RandyBOT")
+@Bot.tree.command(name="randyinfo", description="Get info about RandyBOT and current settings")
 @app_commands.check(is_in_server_list)
 async def randy_info(Interaction: discord.Interaction):
     desc = """A bot that generates random prompts for the requests channel.
     Community Watch roles and up can control this bot and add/remove works from the prompt lists.
-    If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord.
-    """
-    embed = discord.Embed(title="RandyBOT", description=desc, color=0x00ff00)
-    embed.add_field(name="Source Code:", value="https://github.com/dunkeroni/RandyBot", inline=False)
-    embed.add_field(name="Current message rate:", value=str(setting["posting_timer"]) + " seconds", inline=False)
-    embed.add_field(name="Prompts per message:", value=str(setting["num_prompts"]), inline=False)
-    embed.add_field(name="Consecutive descriptor chance:", value="1 in " + str(setting["repetition_odds"]), inline=False)
-    embed.add_field(name="Active:", value=str(setting["active"]), inline=False)
+    If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord."""
+    length = tp.info()
+    stringform = desc + "\n"
+    stringform += "Source Code: https://github.com/dunkeroni/RandyBot \n"
+    stringform += "Current message rate: " + str(setting["posting_timer"]) + " seconds\n"
+    stringform += "Prompts per message: " + str(setting["num_prompts"]) + "\n"
+    stringform += "Consecutive descriptor chance: 1 in " + str(setting["repetition_odds"]) + "\n"
+    stringform += "Active: " + str(setting["active"]) + "\n"
+    stringform += "Current number of descriptors: " + str(length["descriptors"]) + "\n"
+    stringform += "Current number of subjects: " + str(length["subjects"]) + "\n"
+    stringform += "Current number of intros: " + str(length["intros"])
 
-    await Interaction.response.send_message(content=None, embed=embed, ephemeral=True)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot", description=stringform, color=0x00ff00), ephemeral=True)
 
-
+@Bot.tree.command(name="randysave", description="Save the current templates to disk (otherwise saves every 10 minutes)")
+@app_commands.default_permissions(manage_messages=True)
+@app_commands.check(is_in_server_list)
+async def randy_save(Interaction: discord.Interaction):
+    tp.save_templates()
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Saved templates", color=0x00ff00), ephemeral=True)
 
 Bot.run(TOKEN, log_handler=handler)
