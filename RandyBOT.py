@@ -39,13 +39,11 @@ async def on_ready():
     Bot.loop.create_task(send_periodically())
     Bot.loop.create_task(periodic_save())
 
-@Bot.event
 async def periodic_save():
     while True:
-        await asyncio.sleep(600)
+        await asyncio.sleep(600) #save every 10 minutes
         tp.save_templates()
 
-@Bot.event
 async def send_periodically():
     while True:
         #does this every loop in case settings change
@@ -95,8 +93,8 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
     total = tp.remove_from_template(line, target)
     if total == -1:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
-        return
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
+    else:
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
 @app_commands.default_permissions(manage_messages=True)
@@ -104,12 +102,10 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
 async def randy_random(Interaction: discord.Interaction):
     channel = Bot.get_channel(int(setting["channel_id"]))
     message = tp.build_random_message(setting)
-    try:
-        await channel.send(message)
-        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
-    except Exception as e:
-        print(e)
-        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to send message", color=0xff0000), ephemeral=True)
+    print("Sending manual message...")
+    print(message)
+    await channel.send(message)
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyactivate", description="Activate RandyBOT in this channel. Hijacks from previous location.")
 @app_commands.default_permissions(manage_messages=True)
