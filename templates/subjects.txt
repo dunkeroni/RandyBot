@@ -1,3 +1,4 @@
+abs
 accountant
 acolyte
 alarm clock
@@ -7,11 +8,14 @@ angelic being
 ant
 archmage
 armadillo
+arrow
+ass
 assassin
 astronaught
 backpack
 baked salmon
 bald eagle
+ballsack
 bandit
 banshee
 barber
@@ -23,22 +27,29 @@ beaver
 bee
 belly dancer
 berserker
+beverage
 bicycle
 bigfoot
 blacksmith
+blowjob
 blt sandwich
 blue whale
 boa constrictor
+boat
 bodybuilder
+bow
 bugbear
+bull
 burrito
 bus driver
 butterfly
+calendar
 capybara
 car
 carpenter
 cashier
 cat
+cathedral
 centaur
 chameleon
 cheetah
@@ -48,21 +59,27 @@ chimpanzee
 chipmunk
 chupacabra
 clownfish
+codex
 coffee maker
 coffee mug
+comet
 commoner
 cow
+crab
 crocodile
+crook
 crow
 cult fanatic
 cultist
 cyclops
+dakimakura
 deer
 demon
 dentist
 doctor
 dog
 dolphin
+dove
 dragon
 dragonfly
 druid
@@ -70,16 +87,20 @@ duck
 duergar
 dwarf
 eggs benedict
+egyptian
 electrician
 elephant
 elf
 engineer
+engraved tablet
+explosion
 faerie dragon
 fairy
 falcon
 fantasy world
 farmer
 firefighter
+fish
 fisherman
 flamingo
 fox
@@ -105,6 +126,7 @@ griffin
 grocery store
 guard
 hairbrush
+haircut
 hammerhead shark
 harlequin
 harpy
@@ -145,6 +167,7 @@ landscape view
 lawyer
 lemur
 leprechaun
+lesbians
 librarian
 lingerie
 lion
@@ -153,6 +176,8 @@ lizard king
 lizard queen
 lizardfolk
 lizardman
+lobster
+logo
 lumberjack
 mage
 marmoset
@@ -163,6 +188,8 @@ meerkat
 merfolk
 mermaid
 merman
+messenger
+meteor
 milf
 minotaur
 monk
@@ -170,7 +197,6 @@ morrigan
 moth
 mothman
 mummy
-noble
 nomad
 notebook
 nun
@@ -182,6 +208,7 @@ opossum
 orangutan
 orc
 orc war chief
+ore
 otter
 owl
 panda
@@ -192,6 +219,7 @@ pegasus
 pelican
 pen
 pencil sharpener
+penetration
 penguin
 perspicacity
 phoenix
@@ -204,10 +232,12 @@ plumber
 pole dancer
 police officer
 porcupine
+potion
 priest
 princess peach
 pukwudgie
 puppet
+pussy
 quaggoth
 queen
 quesadilla
@@ -221,6 +251,7 @@ redheaded elf
 refrigerator
 remote control
 rhinoceros
+ruler
 salesperson
 salmon
 samurai
@@ -234,7 +265,10 @@ seagull
 seahorse
 seashell
 selkie
+sheep
+shepherd
 shrimp po' boy
+shrine
 siren
 skeleton
 skunk
@@ -249,6 +283,8 @@ soldier
 sorcerer
 sorceress
 spaghetti carbonara
+spear
+sphere
 spider queen
 spider woman
 spy
@@ -260,10 +296,11 @@ starship engineer
 streamer
 street vendor
 stripper
+sundial
 sunglasses
 sushi rolls
-svirfneblin
 swan
+table
 tacos
 taniwha
 tanuki
@@ -274,6 +311,7 @@ thug
 thunderbird
 tiger
 tit bird
+tits
 toad
 toaster
 tofu stir-fry
@@ -301,10 +339,12 @@ water bottle
 weave
 werewolf
 whale
+whip
 witch
 wizard
 wraith
 yeti
 zebra
 zero suit samus
+zodiac
 zombie
