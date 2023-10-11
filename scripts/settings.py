@@ -8,7 +8,11 @@ DEFAULTS = {"posting_timer": 300,
             "active": True,
             "repetition_odds":3,
             "max_length": 200,
-            "num_prompts": 1
+            "num_prompts": 1,
+            "cooldown_max": 7200,
+            "cooldown_min": 1200,
+            "cooldown_adustment": 1800,
+            "lookback": 3,
             }
 
 def initialize():
@@ -34,6 +38,9 @@ def save_settings(setting):
     setting["repetition_odds"] = max(int(setting["repetition_odds"]), 0)
     setting["max_length"] = min(int(setting["max_length"]), 400)
     setting["num_prompts"] = min(int(setting["num_prompts"]), 20)
+    setting["cooldown_max"] = max(int(setting["cooldown_max"]), 600)
+    setting["cooldown_min"] = max(int(setting["cooldown_min"]), 0)
+    setting["lookback"] = max(int(setting["lookback"]), 1)
     # Write settings.json
     with open('settings.json', 'w') as f:
         json.dump(setting, f)

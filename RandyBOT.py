@@ -21,6 +21,8 @@ intents = discord.Intents.default()
 Bot = commands.Bot(command_prefix="/", intents=intents)
 tp = templatePicker()
 setting = get_settings()
+cooldown = setting["cooldown_max"] #start at max cooldown
+references = [] #list of message IDs RandyBot has recently posted
 
 @Bot.event
 async def on_ready():
@@ -45,22 +47,63 @@ async def periodic_save():
         tp.save_templates()
 
 async def send_periodically():
+    global cooldown
     while True:
         #does this every loop in case settings change
         channel = Bot.get_channel(int(setting["channel_id"]))
         if setting["active"]:
             print("Sending message...")
             message = tp.build_random_message(setting)
-            await channel.send(message)
+            post = await channel.send(message)
+            
+            #add the message ID to the list of recent messages
+            references.append(post.id)
+            if len(references) > setting["lookback"]:
+                references.pop(0)
+
+            #log and set cooldown
+            print("Message sent:" + str(post.id))
             print(message)
+            cooldown = setting["cooldown_max"]
+
         #wait 10 seconds at a time until the timer is up
         time = 0
-        while time < setting["posting_timer"]:
+        while time < cooldown:
             await asyncio.sleep(10)
             time += 10
 
+#limit to only the requests channel
+@Bot.event
+async def on_message(message):
+    global cooldown
+    if message.author == Bot.user:
+        return
+    if message.channel.id != setting["channel_id"]:
+        return
+    if message.content.startswith("/"):
+        return
+    if setting["active"]:
+        #decrease cooldown if the message is a reply to the bot
+        if message.reference != None:
+            if message.reference.message_id in references:
+                try:
+                    print("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
+                    cooldown = max(cooldown - setting["cooldown_adjustment"], setting["cooldown_min"])
+                    print("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to" + str(cooldown))
+                    #if the message includes an attachment, add a star reaction
+                    if len(message.attachments) > 0:
+                        await message.add_reaction("⭐")
+                except Exception as e:
+                    print(e)
+                    print("Cooldown reduction failed")
+
+#show error if failed
+@Bot.event
+async def on_message_error(ctx, error):
+    print(error)
+
 async def is_in_server_list(ctx: discord.Interaction):
-    print("incoming command from " + str(ctx.guild_id))
+    print("incoming `" + ctx.data["name"] + "` command from " + str(ctx.guild_id))
     print("allowed servers: " + str(setting["server_whitelist"]))
     return (ctx.guild_id in setting["server_whitelist"]) or setting["server_whitelist"] == []
 
@@ -130,10 +173,14 @@ async def randy_deactivate(Interaction: discord.Interaction):
 @app_commands.check(is_in_server_list)
 @app_commands.describe(setting_name="Which setting to change")
 @app_commands.choices(setting_name =[
-    app_commands.Choice(name="Posting Rate (s)", value="posting_timer"),
+    #app_commands.Choice(name="Posting Rate (s)", value="posting_timer"),
     app_commands.Choice(name="Descriptor Recursion Chance (1/X)", value="repetition_odds"),
     app_commands.Choice(name="Max Prompt Length (characters)", value="max_length"),
-    app_commands.Choice(name="Number of Prompts", value="num_prompts")
+    app_commands.Choice(name="Number of Prompts", value="num_prompts"),
+    app_commands.Choice(name="Cooldown Max (s)", value="cooldown_max"),
+    app_commands.Choice(name="Cooldown Min (s)", value="cooldown_min"),
+    app_commands.Choice(name="Cooldown Adjustment per reply (s)", value="cooldown_adjustment"),
+    app_commands.Choice(name="Lookback (messages)", value="lookback")
 ])
 async def randy_settings(Interaction: discord.Interaction, setting_name: str, value: str):
     try:
@@ -150,18 +197,20 @@ async def randy_settings(Interaction: discord.Interaction, setting_name: str, va
 @app_commands.check(is_in_server_list)
 async def randy_info(Interaction: discord.Interaction):
     desc = """A bot that generates random prompts for the requests channel.
-    Community Watch roles and up can control this bot and add/remove works from the prompt lists.
+    Community Watch roles and up can control this bot and add/remove words from the prompt lists.
     If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord."""
     length = tp.info()
     stringform = desc + "\n"
     stringform += "Source Code: https://github.com/dunkeroni/RandyBot \n"
-    stringform += "Current message rate: " + str(setting["posting_timer"]) + " seconds\n"
+    stringform += "Current message rate: " + str(setting["cooldown_max"]) + " seconds\n"
     stringform += "Prompts per message: " + str(setting["num_prompts"]) + "\n"
     stringform += "Consecutive descriptor chance: 1 in " + str(setting["repetition_odds"]) + "\n"
     stringform += "Active: " + str(setting["active"]) + "\n"
     stringform += "Current number of descriptors: " + str(length["descriptors"]) + "\n"
     stringform += "Current number of subjects: " + str(length["subjects"]) + "\n"
-    stringform += "Current number of intros: " + str(length["intros"])
+    stringform += "Current number of intros: " + str(length["intros"]) + "\n"
+
+    stringform += "\nIf a message is a reply to one of RandyBot's last " + str(setting["lookback"]) + " messages, the cooldown is reduced by " + str(setting["cooldown_adjustment"]) + " seconds, down to a minimum of " + str(setting["cooldown_min"]) + " seconds."
 
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot", description=stringform, color=0x00ff00), ephemeral=True)
 
