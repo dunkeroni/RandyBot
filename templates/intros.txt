@@ -2,6 +2,7 @@ Bestow upon me wonders of
 Bless me with the essence of
 Current Quest Objectives
 Deliver unto me
+Feed me
 Give me
 Grant me
 I am in need of
@@ -12,6 +13,7 @@ I challenge you to craft
 I crave
 I demand
 I desire masterpieces of
+I had a dream about
 I humbly request
 I humbly request gifts of
 I implore you to fashion
@@ -35,7 +37,9 @@ Show me your interpretations of
 Shower me with
 The dark gods lust for
 These are a few of my favorite things
+Try writing a creative prompt using  these
 When the world needs saving, we must gather
+Who's up for some
 Why not spice things up with
+Will it blend
 You know what I could go for? Some
-Feed me
