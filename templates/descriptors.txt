@@ -18,6 +18,7 @@ analog
 ancestral
 ancient
 animal ears
+animate
 anime
 anthro
 apocalyptic
@@ -47,6 +48,7 @@ bacon
 ballet
 barbarous
 baroque
+bat winged
 beaded
 beastial
 beige
@@ -68,9 +70,11 @@ brown
 bubbly
 bullish
 bumpy
+burrowing
 cactus
 calligraphy
 candy
+canonical
 carbon fiber
 caring
 cat's eye gemstone
@@ -81,6 +85,7 @@ ceramic
 cerulean
 chalk art
 challenging
+champion
 charcoal
 charismatic
 chartreuse
@@ -205,9 +210,11 @@ fabulous
 fae
 fall forest
 fall spice
+fan fakemon
 fanatical
 fantasy
 fantasy-punk
+feathered
 felt diorama
 felted
 feverish
@@ -268,6 +275,7 @@ gothic
 graffiti
 grained
 granular
+grassy
 gravelly
 gray
 grayscale
@@ -298,6 +306,7 @@ hessian
 hierarchical
 hieroglyphic
 high contrast
+highleg
 hippy
 holographic
 holy
@@ -326,6 +335,7 @@ infrared
 ink blot
 ink drawing
 inscrutable
+insectoid
 inspiring
 intelligent
 interdimensional
@@ -338,12 +348,14 @@ jewel encrusted
 jiggly
 jumpscare
 kaleidoscopic
+ki powered
 kind
 kinetic
 kitsune
 knitted
 knotty
 knurled
+kung-fu
 labyrinthine
 lacy
 land art
@@ -392,6 +404,7 @@ mature
 mauve
 mecha
 mechanical
+mechanized
 medicinal
 merciful
 mercurial
@@ -503,6 +516,8 @@ professional
 prophetic
 prosthetic
 protective
+provocative
+psionic
 psychadellic
 psychedelic
 psychic
@@ -515,11 +530,11 @@ quantum
 quilted
 quilting
 quizzical
+radioactive
 rag covered
 ragged
 rainbow
 ranch
-reactive
 realism
 realistic
 reaping
@@ -537,11 +552,13 @@ robot
 robotic
 rococo
 ropy
+rotating
 rough
 ruby
 ruffled
 rugged
 rural
+sacred
 saffron
 sage
 samurai
@@ -613,6 +630,7 @@ startled
 steam powered
 steampunk
 steel
+stocking wearing
 stone
 storm
 stormy
@@ -672,9 +690,11 @@ tired
 topaz
 torn clothing
 torn paper collage
+toxic
 traditional
 trans
 transcendent
+translucent
 treacherous
 tribal
 tropical
@@ -686,6 +706,7 @@ two-tone countershade
 ufo
 ultramarine
 undead
+underground
 undressing
 unholy
 unknown
@@ -701,15 +722,19 @@ veined
 velour
 velvet
 venerable
+venomous
 vermilion
 victorian
 viking
 vintage
 viral
+virtual pet
 viscous
 vision
+vodka
 voluptuous
 waffle
+wariza pose
 water elemental
 watercolor
 watercolor painting
@@ -722,6 +747,7 @@ wilderness
 wind elemental
 wire jewelry
 wire sculpture
+wire-fu
 wiry
 wise
 wood carving
@@ -732,5 +758,6 @@ worn
 woven
 wrinkled
 yellow
+yoga
 zesty
 zombie

@@ -85,14 +85,12 @@ async def on_message(message):
     if setting["active"]:
         #decrease cooldown if the message is a reply to the bot
         if message.reference != None:
-            if message.reference.message_id in references:
+            if message.reference.message_id in references and len(message.attachments):
                 try:
                     print("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
                     cooldown = max(cooldown - setting["cooldown_adjustment"], setting["cooldown_min"])
-                    print("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to" + str(cooldown))
-                    #if the message includes an attachment, add a star reaction
-                    if len(message.attachments) > 0:
-                        await message.add_reaction("⭐")
+                    print("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to " + str(cooldown))
+                    await message.add_reaction("⭐")
                 except Exception as e:
                     print(e)
                     print("Cooldown reduction failed")

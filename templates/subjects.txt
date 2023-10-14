@@ -44,6 +44,7 @@ boa constrictor
 boat
 bodybuilder
 bow
+bug
 bugbear
 bull
 burrito
@@ -52,6 +53,7 @@ butt sex
 butterfly
 cake
 calendar
+cannon
 capybara
 car
 carpenter
@@ -63,6 +65,7 @@ cauldron
 centaur
 chair
 chameleon
+charlatan
 cheetah
 chef
 chimera
@@ -170,6 +173,7 @@ hummingbird
 humpback whale
 hyena
 iguana
+invention
 isopod
 jack o lantern
 jackalope
@@ -190,6 +194,7 @@ kitchen knife
 kitsune
 knave
 knight
+knoll
 koala
 kobold
 komodo dragon
@@ -215,6 +220,7 @@ logo
 lumberjack
 mage
 marmoset
+martial artist
 mask
 mating press
 mechanic
@@ -227,7 +233,9 @@ messenger
 meteor
 milf
 mime
+minidress
 minotaur
+mole
 monk
 monster
 morrigan
@@ -279,8 +287,10 @@ pole dancer
 police officer
 porcupine
 potion
+prairie dog
 priest
 princess peach
+psychic
 pukwudgie
 puppet
 pussy
@@ -304,11 +314,13 @@ salad
 salesperson
 salmon
 samurai
+sanctuary
 satanic creature
 satyr
 scales
 scepter
 scout
+screwdriver
 scroll
 scythe
 sea turtle
@@ -322,6 +334,7 @@ shepherd
 shrimp po' boy
 shrine
 side dish
+silhouette
 siren
 skeleton
 skull
@@ -370,7 +383,6 @@ television
 thug
 thunderbird
 tiger
-tit bird
 tits
 toad
 toaster
@@ -394,7 +406,7 @@ vampire
 waffle iron
 waiter
 waitress
-wallet
+war machine
 warrior
 warship
 warthog
