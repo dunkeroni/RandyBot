@@ -1,14 +1,17 @@
 import os
 import random
 
+import logging
+logger = logging.getLogger('discord')
+
 def initialize_templates():
     # make sure the templates/ directory exists
     # needs to include: intros.txt, descriptors.txt, and subjects.txt
     if not os.path.exists('templates'):
         os.makedirs('templates')
-        print("templates directory created")
+        logger.info("templates directory created")
     else:
-        print("templates directory already exists")
+        logger.info("templates directory already exists")
     
     required_files = ['intros.txt', 'descriptors.txt', 'subjects.txt']  
     for file in required_files:
@@ -16,9 +19,9 @@ def initialize_templates():
             f = open('templates/' + file, 'w')
             f.write("DEFAULT TEXT\n")
             f.close()
-            print(file + " created")
+            logger.info(file + " created")
         else:
-            print(file + " already exists")
+            logger.info(file + " already exists")
 
 def add_to_template(line, target):
     # add a new line to a template file
@@ -29,12 +32,12 @@ def add_to_template(line, target):
     total1 = len(lines)
     with open('templates/' + target + '.txt', 'a') as f:
         f.write(line + '\n')
-        print("Added '" + line + "' to " + target)
+        logger.info("Added '" + line + "' to " + target)
     total2 = clean_template(target) #return length for message
     if total2 > total1:
         return total2
     else:
-        print("Failed to add '" + line + "' to " + target)
+        logger.info("Failed to add '" + line + "' to " + target)
         return -1
 
 def remove_from_template(line, target):
@@ -49,10 +52,10 @@ def remove_from_template(line, target):
             else:
                 found = True
     if not found:
-        print("Could not find '" + line + "' in " + target)
+        logger.info("Could not find '" + line + "' in " + target)
         return -1
     else:
-        print("Removed " + line + " from " + target)
+        logger.info("Removed " + line + " from " + target)
     return clean_template(target) #return length for message
 
 def clean_template(target):
@@ -71,7 +74,7 @@ def clean_template(target):
     with open('templates/' + target + '.txt', 'w') as f:
         for l in cleaned:
             f.write(l)
-    print("Cleaned " + target)
+    logger.info("Cleaned " + target)
     #return length for message
     return len(cleaned)
 
@@ -80,7 +83,7 @@ def auto_import():
     #add template lines from autoimport/subjects/ folder to subjects.txt
     #add template lines from autoimport/intros/ folder to intros.txt
     initialize_templates()
-    print("Auto-importing templates...")
+    logger.info("Auto-importing templates...")
     for file in os.listdir('autoimport/descriptors'):
         if file.endswith('.txt'):
             with open('autoimport/descriptors/' + file, 'r') as f:
@@ -108,7 +111,7 @@ def auto_import():
     clean_template('subjects')
     clean_template('intros')
 
-    print("Auto-import complete")
+    logger.info("Auto-import complete")
 
 def build_random_message(setting):
     # build a random message from the templates

@@ -1,6 +1,9 @@
 import os
 import json
 
+import logging
+logger = logging.getLogger('discord')
+
 # load from defaults/settings.json if it doesn't exist
 DEFAULTS = {"posting_timer": 300,
             "channel_id": 1234567890,
@@ -13,6 +16,7 @@ DEFAULTS = {"posting_timer": 300,
             "cooldown_min": 1200,
             "cooldown_adustment": 1800,
             "lookback": 3,
+            "message_list": [],
             }
 
 def initialize():
@@ -32,7 +36,7 @@ def get_settings():
     return settings
 
 def save_settings(setting):
-    print("Saving settings...")
+    logger.info("Saving settings...")
     #sanity check values in settings
     setting["posting_timer"] = max(int(setting["posting_timer"]), 10)
     setting["repetition_odds"] = max(int(setting["repetition_odds"]), 0)

@@ -14,7 +14,17 @@ load_dotenv()
 # These are the environment variables that need to be set in .env, not included in repo
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S')
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setLevel(logging.INFO)
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger = logging.getLogger('discord')
+logger.setLevel(logging.INFO)
+logger.addHandler(handler)
+#logger.addHandler(logging.StreamHandler())
 
 intents = discord.Intents.default()
 
@@ -22,21 +32,22 @@ Bot = commands.Bot(command_prefix="/", intents=intents)
 tp = templatePicker()
 setting = get_settings()
 cooldown = setting["cooldown_max"] #start at max cooldown
-references = [] #list of message IDs RandyBot has recently posted
+#setting["message_list"] = [] #list of message IDs RandyBot has recently posted
 
 @Bot.event
 async def on_ready():
-    print('We have logged in.')
-    print(setting)
+    logger.info('We have logged in.')
     templates.auto_import()
-    print("Current settings:")
-    print(setting)
+    logger.info("Current settings:")
+    logger.info(setting)
     try:
         synced = await Bot.tree.sync()
-        print(synced)
+        logger.info(synced)
     except Exception as e:
-        print("Sync failed")
-        print(e)
+        logger.info("Sync failed")
+        logger.error(e)
+        logger.error(e)
+        logger.info(e)
 
     Bot.loop.create_task(send_periodically())
     Bot.loop.create_task(periodic_save())
@@ -48,22 +59,26 @@ async def periodic_save():
 
 async def send_periodically():
     global cooldown
+    time = 0
     while True:
         #does this every loop in case settings change
         channel = Bot.get_channel(int(setting["channel_id"]))
+
+        logger.info("Cooldown: " + str(cooldown) + '  ---  Time Since Last Message: ' + str(time))
+
         if setting["active"]:
-            print("Sending message...")
+            logger.info("Sending message...")
             message = tp.build_random_message(setting)
             post = await channel.send(message)
             
             #add the message ID to the list of recent messages
-            references.append(post.id)
-            if len(references) > setting["lookback"]:
-                references.pop(0)
+            setting["message_list"].append(post.id)
+            if len(setting["message_list"]) > setting["lookback"]:
+                setting["message_list"].pop(0)
+            save_settings(setting)
 
             #log and set cooldown
-            print("Message sent:" + str(post.id))
-            print(message)
+            logger.info("Message sent:" + str(post.id) + "\n" + message)
             cooldown = setting["cooldown_max"]
 
         #wait 10 seconds at a time until the timer is up
@@ -85,24 +100,24 @@ async def on_message(message):
     if setting["active"]:
         #decrease cooldown if the message is a reply to the bot
         if message.reference != None:
-            if message.reference.message_id in references and len(message.attachments):
+            if message.reference.message_id in setting["message_list"] and len(message.attachments):
                 try:
-                    print("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
+                    logger.info("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
                     cooldown = max(cooldown - setting["cooldown_adjustment"], setting["cooldown_min"])
-                    print("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to " + str(cooldown))
+                    logger.info("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to " + str(cooldown))
                     await message.add_reaction("⭐")
                 except Exception as e:
-                    print(e)
-                    print("Cooldown reduction failed")
+                    logger.info(e)
+                    logger.info("Cooldown reduction failed")
 
 #show error if failed
 @Bot.event
 async def on_message_error(ctx, error):
-    print(error)
+    logger.info(error)
 
 async def is_in_server_list(ctx: discord.Interaction):
-    print("incoming `" + ctx.data["name"] + "` command from " + str(ctx.guild_id))
-    print("allowed servers: " + str(setting["server_whitelist"]))
+    logger.info("incoming `" + ctx.data["name"] + "` command from " + str(ctx.guild_id))
+    logger.info("allowed servers: " + str(setting["server_whitelist"]))
     return (ctx.guild_id in setting["server_whitelist"]) or setting["server_whitelist"] == []
 
 @Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
@@ -143,8 +158,8 @@ async def randy_remove(Interaction: discord.Interaction, target: str, line: str)
 async def randy_random(Interaction: discord.Interaction):
     channel = Bot.get_channel(int(setting["channel_id"]))
     message = tp.build_random_message(setting)
-    print("Sending manual message...")
-    print(message)
+    logger.info("Sending manual message...")
+    logger.info(message)
     await channel.send(message)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
@@ -153,7 +168,7 @@ async def randy_random(Interaction: discord.Interaction):
 @app_commands.check(is_in_server_list)
 async def randy_activate(Interaction: discord.Interaction):
     setting["channel_id"] = Interaction.channel.id
-    print("Attaching to channel " + str(Interaction.channel.id))
+    logger.info("Attaching to channel " + str(Interaction.channel.id))
     setting["active"] = True
     save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Activated RandyBOT in this channel", color=0x00ff00), ephemeral=True)
@@ -183,11 +198,11 @@ async def randy_deactivate(Interaction: discord.Interaction):
 async def randy_settings(Interaction: discord.Interaction, setting_name: str, value: str):
     try:
         setting[setting_name] = int(value)
-        print("Changed " + setting_name + " to " + str(setting[setting_name]))
+        logger.info("Changed " + setting_name + " to " + str(setting[setting_name]))
         save_settings(setting) #save settings, correct any invalid values
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Changed " + setting_name + " to " + str(setting[setting_name]), color=0x00ff00), ephemeral=True)
     except Exception as e:
-        print(e)
+        logger.error(e)
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Failed to change " + setting_name + " to " + value, color=0xff0000), ephemeral=True)
 
 #randy info command
@@ -195,8 +210,8 @@ async def randy_settings(Interaction: discord.Interaction, setting_name: str, va
 @app_commands.check(is_in_server_list)
 async def randy_info(Interaction: discord.Interaction):
     desc = """A bot that generates random prompts for the requests channel.
-    Community Watch roles and up can control this bot and add/remove words from the prompt lists.
-    If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord."""
+Community Watch roles and up can control this bot and add/remove words from the prompt lists.
+If you have questions, suggestions, or want to report a bug, contact dunkeroni on Discord."""
     length = tp.info()
     stringform = desc + "\n"
     stringform += "Source Code: https://github.com/dunkeroni/RandyBot \n"

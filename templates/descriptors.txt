@@ -26,8 +26,10 @@ aquatic
 arachnid
 arcane
 archaeological
+archaic
 archeological
 archer
+architectural
 arctic
 armored
 art deco
@@ -41,16 +43,17 @@ atomic
 augmented
 aurora borealis
 authorative
+autumn
 avian
 aviform
 azure
 bacon
 ballet
+ballroom
 barbarous
 baroque
 bat winged
 beaded
-beastial
 beige
 benefic
 bespectacled
@@ -65,7 +68,6 @@ bootylicious
 boreal
 boss
 bovine
-bow armed
 brown
 bubbly
 bullish
@@ -96,6 +98,7 @@ chiaroscuro
 chilly
 chiseled
 chitinous
+chromatic aberration
 cinematic
 cinnamon
 clay
@@ -118,6 +121,7 @@ cooking
 coral
 corded
 corduroy
+cornucopia of
 corrupt
 cosmic
 cosplay
@@ -129,6 +133,7 @@ cowboy
 cowgirl
 crab
 craggy
+cranberry
 cream
 creative
 crimson
@@ -165,6 +170,7 @@ digital sculpture
 dilapidated
 dinosaur
 disco
+dish
 diverse group of
 divine
 dominant
@@ -197,6 +203,7 @@ enthusiastic
 enticing
 etching
 ethereal
+evening
 evil
 excited
 exhausted
@@ -210,7 +217,6 @@ fabulous
 fae
 fall forest
 fall spice
-fan fakemon
 fanatical
 fantasy
 fantasy-punk
@@ -247,6 +253,7 @@ freshly washed
 friendly
 frigid
 fringed
+front and back views
 frozen
 furry
 futa
@@ -256,6 +263,7 @@ futuristic
 fuzzy
 galactic
 gamepiece
+genderbent
 generous
 geological
 geometric
@@ -277,6 +285,7 @@ grained
 granular
 grassy
 gravelly
+gravy covered
 gray
 grayscale
 greasy
@@ -286,6 +295,7 @@ greeting card
 greyscale
 gritty realism
 grooved
+guacamole flavored
 gun toting
 hairy
 hallowed
@@ -297,6 +307,7 @@ hardworking
 harvest
 harvest festival
 haunted
+hawaiian
 heavenly
 hellscape
 herbal
@@ -307,6 +318,7 @@ hierarchical
 hieroglyphic
 high contrast
 highleg
+hilarious
 hippy
 holographic
 holy
@@ -326,9 +338,10 @@ ice elemental
 ice sculpture
 immovable
 impasto
+impoverished
 impressionistic
 incomprehensible
-incorruptable
+incorruptible
 indigo
 inflatable
 infrared
@@ -341,6 +354,8 @@ intelligent
 interdimensional
 intriguing
 iridescent
+irish
+jack-o
 jagged
 japanese ink painting
 jellybean
@@ -349,6 +364,7 @@ jiggly
 jumpscare
 kaleidoscopic
 ki powered
+killer
 kind
 kinetic
 kitsune
@@ -364,6 +380,8 @@ lava
 lava lamp
 lavender
 lawn
+lawn ornament
+layzor firin
 leafy
 leaping
 leatherwork
@@ -376,6 +394,7 @@ liquid metal
 lithe
 lithography
 llama
+loaded
 lonely
 long necked
 loud
@@ -397,7 +416,9 @@ malefic
 many legged
 marble statue
 marigold
+marshmallowy
 martian
+mashed potato sculpture
 matte
 matted
 mature
@@ -418,18 +439,22 @@ military
 minimalism
 minimalist
 mixed media
+mmorpg
 molten
 monochrome
 monotype
 monstrous
 mosaic
+moshing
 mossy
 motion blur
 mottled
+mounted
 mowing
 muddy
 multi-breasted
 multi-tailed
+multiple views
 muscular
 mysterious
 mysterous
@@ -445,6 +470,7 @@ neon
 nightmare
 ninja
 nomadic
+non copy paste
 northern
 nubby
 nude
@@ -456,6 +482,7 @@ old
 olive
 olympian
 op art
+opposite day
 optical art
 optical illusion
 optimistic
@@ -465,6 +492,7 @@ orchid
 orcish
 origami
 ornate
+orthodox
 ossuary
 otherworldly
 outlaw
@@ -482,6 +510,7 @@ pebbled
 pebbly
 pencil sketch
 periwinkle
+personalized
 photorealistic
 pickled
 pink
@@ -507,6 +536,7 @@ post-apocalyptic
 potato
 pottery
 practical
+prehistoric
 prickly
 printmaking
 prism
@@ -535,6 +565,7 @@ rag covered
 ragged
 rainbow
 ranch
+raving
 realism
 realistic
 reaping
@@ -547,9 +578,11 @@ renaissance
 resilient
 retro
 retro-futuristic
+reverse
 ribbed
 robot
 robotic
+rocking
 rococo
 ropy
 rotating
@@ -569,6 +602,7 @@ santa
 sapphire
 satanic
 satin
+saucy
 savvy
 scaled
 scaly
@@ -595,6 +629,7 @@ silent
 silhouette
 silky
 silver
+silver spoon
 sinful
 sinister
 sinuous
@@ -603,7 +638,6 @@ sleek
 slender
 slick
 slimy
-slubby
 slutty
 smooth
 smug
@@ -620,10 +654,13 @@ space
 spacefaring
 sparking
 sparkling
+spit roasted
 splashed colored milk
 spongy
 spooky
 spoopy
+sports
+springtime
 stained
 stained glass
 startled
@@ -638,8 +675,10 @@ street art
 street fashion
 string art
 stubby
+stuffed
 suburban
 suede
+summer
 sunny
 sunset
 super powered
@@ -666,7 +705,7 @@ tapestry
 tattooed
 teal
 temperate
-temporal/time
+temporal
 ten-inch
 tenacious
 tentacle
@@ -710,9 +749,11 @@ underground
 undressing
 unholy
 unknown
+unorthodox
 unruly
 unzipped
 urban
+used future
 utopian
 vampire
 vapor
@@ -742,9 +783,11 @@ waxy
 western
 wet
 white
+white cat eared
 wild
 wilderness
 wind elemental
+winter
 wire jewelry
 wire sculpture
 wire-fu

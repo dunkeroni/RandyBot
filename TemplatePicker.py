@@ -1,6 +1,9 @@
 import random
 import shutil
 
+import logging
+logger = logging.getLogger('discord')
+
 class templatePicker():
     def __init__(self):
         self.templates = {}
@@ -15,7 +18,7 @@ class templatePicker():
         #descriptors.txt
         #subjects.txt
         #intros.txt
-        print("Loading templates...")
+        logger.info("Loading templates...")
         with open('templates/descriptors.txt', 'r') as f:
             for line in f:
                 self.templates["descriptors"].add(line.strip("\n"))
@@ -25,7 +28,7 @@ class templatePicker():
         with open('templates/intros.txt', 'r') as f:
             for line in f:
                 self.templates["intros"].add(line.strip("\n"))
-        print("Templates loaded")
+        logger.info("Templates loaded")
 
     def save_templates(self):
         #save templates to templates/ folder
@@ -35,7 +38,7 @@ class templatePicker():
 
         #if lists weren't updated, don't save
         if not self.listsupdated:
-            print("No changes to save")
+            logger.info("No changes to save")
             return
         self.listsupdated = False
         
@@ -76,24 +79,24 @@ class templatePicker():
         with open('templates/intros.txt', 'r') as f:
             intros = f.readlines()
         if len(descriptors) != len(self.templates["descriptors"]):
-            print("Warning: descriptors.txt has " + str(len(descriptors)) + " lines, but templates has " + str(len(self.templates["descriptors"])) + " lines")
+            logger.info("Warning: descriptors.txt has " + str(len(descriptors)) + " lines, but templates has " + str(len(self.templates["descriptors"])) + " lines")
             savefailed = True
         if len(subjects) != len(self.templates["subjects"]):
-            print("Warning: subjects.txt has " + str(len(subjects)) + " lines, but templates has " + str(len(self.templates["subjects"])) + " lines")
+            logger.info("Warning: subjects.txt has " + str(len(subjects)) + " lines, but templates has " + str(len(self.templates["subjects"])) + " lines")
             savefailed = True
         if len(intros) != len(self.templates["intros"]):
-            print("Warning: intros.txt has " + str(len(intros)) + " lines, but templates has " + str(len(self.templates["intros"])) + " lines")
+            logger.info("Warning: intros.txt has " + str(len(intros)) + " lines, but templates has " + str(len(self.templates["intros"])) + " lines")
             savefailed = True
 
         #if sanity check failed, restore from backup
         if savefailed:
-            print("Restoring from backup...")
+            logger.info("Restoring from backup...")
             shutil.copyfile('templates/descriptors.txt.bak', 'templates/descriptors.txt')
             shutil.copyfile('templates/subjects.txt.bak', 'templates/subjects.txt')
             shutil.copyfile('templates/intros.txt.bak', 'templates/intros.txt')
-            print("Restore complete")
+            logger.info("Restore complete")
         else:
-            print("Templates saved")
+            logger.info("Templates saved")
         
     def add_to_template(self, line, target):
         #add a line to a template
@@ -103,7 +106,7 @@ class templatePicker():
         if target == 'descriptors' or target == 'subjects':
             line = line.lower()
         self.templates[target].add(line)
-        print("Added " + line + " to " + target)
+        logger.info("Added " + line + " to " + target)
         return len(self.templates[target])
     
     def remove_from_template(self, line, target):
@@ -115,10 +118,10 @@ class templatePicker():
             line = line.lower()
         if line in self.templates[target]:
             self.templates[target].remove(line)
-            print("Removed " + line + " from " + target)
+            logger.info("Removed " + line + " from " + target)
             return len(self.templates[target])
         else:
-            print("Could not find " + line + " in " + target)
+            logger.info("Could not find " + line + " in " + target)
             return -1
 
     def build_random_message(self, setting: dict):
