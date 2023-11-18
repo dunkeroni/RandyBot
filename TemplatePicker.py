@@ -127,20 +127,54 @@ class templatePicker():
     def build_random_message(self, setting: dict):
         # build a random message from the templates
         intros = list(self.templates["intros"])
-        descriptors = list(self.templates["descriptors"])
-        subjects = list(self.templates["subjects"])
-
         intro = random.choice(intros)
         message = "### " + intro + ":"
         for i in range(setting["num_prompts"]):
-            descriptor = random.choice(descriptors)
-            # % chance to add another descriptor, repeating until it doesn't
-            if setting["repetition_odds"] > 0:
-                while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
-                    descriptor = descriptor + ", " + random.choice(descriptors)
-            subject = random.choice(subjects)
-            message = message + "\n* " + descriptor + " " + subject
+            prompt_type = random.randint(1,3)
+            if prompt_type == 1:
+                message = message + "\n* " + self.build_recursive_subject_first(setting)
+            elif prompt_type == 2:
+                message = message + "\n* " + self.build_recursive_prompt(setting)
+            elif prompt_type == 3:
+                message = message + "\n* " + self.build_multi_subject(setting)
         return message
+
+    def build_recursive_prompt(self, setting: dict):
+        # build a random message from the templates
+        descriptors = list(self.templates["descriptors"])
+        subjects = list(self.templates["subjects"])
+        descriptor = random.choice(descriptors)
+        # % chance to add another descriptor, repeating until it doesn't
+        if setting["repetition_odds"] > 0:
+            while (random.randint(1,setting["repetition_odds"]) == 1) and (len(descriptor) < setting["max_length"]):
+                descriptor = descriptor + ", " + random.choice(descriptors)
+        subject = random.choice(subjects)
+        prompt = descriptor + " " + subject
+        return prompt
+    
+    def build_recursive_subject_first(self, setting: dict):
+        # build a random message from the templates
+        descriptors = list(self.templates["descriptors"])
+        subjects = list(self.templates["subjects"])
+        descriptor = random.choice(descriptors)
+        for i in range(random.randint(0,4)):
+            descriptor = descriptor + ", " + random.choice(descriptors)
+        subject = random.choice(subjects)
+        prompt = subject + ", " + descriptor
+        return prompt
+
+    def build_multi_subject(self, setting: dict):
+        # decide how many subjects to use
+        num_subjects = random.randint(1,3)
+        subjects = list(self.templates["subjects"])
+        descriptors = list(self.templates["descriptors"])
+        # pick subjects
+        prompt = ""
+        for i in range(num_subjects):
+            if i > 0:
+                prompt = prompt + ", "
+            prompt = prompt + random.choice(descriptors) + " " + random.choice(subjects)
+        return prompt
 
     def info(self):
         #return lengths of templates
