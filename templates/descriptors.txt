@@ -34,6 +34,7 @@ arctic
 armored
 art deco
 art nouveau
+as an ai language model, i am unable to...
 ascending
 astral
 astrological
@@ -55,10 +56,12 @@ baroque
 bat winged
 beaded
 beige
+believable
 benefic
 bespectacled
 bioluminescent
 biomechanical
+bismuth
 black
 blindfolded
 blown glass
@@ -98,6 +101,7 @@ chiaroscuro
 chilly
 chiseled
 chitinous
+chromatic
 chromatic aberration
 cinematic
 cinnamon
@@ -136,6 +140,7 @@ craggy
 cranberry
 cream
 creative
+criminal
 crimson
 crinkled
 crispy
@@ -211,6 +216,7 @@ exoplanetary
 exotic
 exploring
 explosive
+extended
 extra spicy
 extraterrestrial
 fabulous
@@ -255,6 +261,7 @@ frigid
 fringed
 front and back views
 frozen
+frozen solid
 furry
 futa
 futanari
@@ -306,9 +313,11 @@ hand made
 hardworking
 harvest
 harvest festival
+hat wearing
 haunted
 hawaiian
 heavenly
+heavily burled
 hellscape
 herbal
 hermetic
@@ -336,6 +345,7 @@ hungry
 hyper-realistic
 ice elemental
 ice sculpture
+immense
 immovable
 impasto
 impoverished
@@ -361,6 +371,7 @@ japanese ink painting
 jellybean
 jewel encrusted
 jiggly
+juicy
 jumpscare
 kaleidoscopic
 ki powered
@@ -415,6 +426,7 @@ magnetic
 malefic
 many legged
 marble statue
+mardi gras
 marigold
 marshmallowy
 martian
@@ -527,6 +539,7 @@ pliable
 pockmarked
 pointillism
 poisonous
+pokey
 polished
 polymer clay
 pop art
@@ -566,6 +579,7 @@ ragged
 rainbow
 ranch
 raving
+raw
 realism
 realistic
 reaping
@@ -590,6 +604,7 @@ rough
 ruby
 ruffled
 rugged
+runic
 rural
 sacred
 saffron
@@ -618,6 +633,7 @@ sevenfold
 sexy
 shadowless
 shadowy
+shady
 shaggy
 shamanic
 sharp
@@ -752,6 +768,7 @@ unknown
 unorthodox
 unruly
 unzipped
+upright
 urban
 used future
 utopian
@@ -769,11 +786,13 @@ victorian
 viking
 vintage
 viral
+virtual
 virtual pet
 viscous
 vision
 vodka
 voluptuous
+vtuber
 waffle
 wariza pose
 water elemental

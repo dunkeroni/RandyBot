@@ -9,6 +9,7 @@ angel
 angelic being
 ant
 appliance
+archeology
 archmage
 armadillo
 arrow
@@ -65,6 +66,7 @@ caterpillar
 cathedral
 cauldron
 centaur
+cephalid
 chair
 chameleon
 charlatan
@@ -94,6 +96,7 @@ crow
 cult fanatic
 cultist
 cupcake
+currency
 cyborg
 cyclops
 dakimakura
@@ -126,6 +129,7 @@ elephant
 elf
 engineer
 engraved tablet
+erection
 explosion
 exterior
 eye
@@ -145,12 +149,14 @@ frog
 full nelson
 gargoyle
 garter snake
+gas station sushi
 gate
 gecko
 genie
 ghost
 giraffe
 gladiator
+glyph
 gnoll
 goat fish
 goblin
@@ -221,6 +227,7 @@ lawn gnome
 lawyer
 lemur
 lesbians
+leviathan
 librarian
 lifeguard
 lingerie
@@ -235,6 +242,7 @@ logo
 lotus
 lumberjack
 mage
+mana symbol
 marmoset
 martial artist
 mask
@@ -282,6 +290,7 @@ otter
 owl
 paleontologist
 panda
+parade
 parasol
 parrot
 party
@@ -312,6 +321,7 @@ potion
 prairie dog
 priest
 princess peach
+prophet
 psychic
 pukwudgie
 puppet
@@ -325,6 +335,7 @@ raccoon
 rat
 rattlesnake
 raygun
+reality
 reaper
 receptionist
 redheaded elf

@@ -154,18 +154,20 @@ class templatePicker():
     
     def build_recursive_subject_first(self, setting: dict):
         # build a random message from the templates
+        # ex: Turkey: reptilian, brazilian, octillionaire
         descriptors = list(self.templates["descriptors"])
         subjects = list(self.templates["subjects"])
         descriptor = random.choice(descriptors)
-        for i in range(random.randint(0,4)):
+        for i in range(random.randint(0,2)):
             descriptor = descriptor + ", " + random.choice(descriptors)
         subject = random.choice(subjects)
-        prompt = subject + ", " + descriptor
+        prompt = subject + ": " + descriptor
         return prompt
 
     def build_multi_subject(self, setting: dict):
         # decide how many subjects to use
-        num_subjects = random.randint(1,3)
+        # ex: Reptilian Turkey, Brazilian Octopus
+        num_subjects = random.randint(1,4) // 4 + 1 # 25% chance of 2 subjects, 75% chance of 1 subject
         subjects = list(self.templates["subjects"])
         descriptors = list(self.templates["descriptors"])
         # pick subjects
