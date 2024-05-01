@@ -54,6 +54,7 @@ bus driver
 butt sex
 butterfly
 cake
+cake topper
 calendar
 cannon
 capybara
@@ -107,6 +108,7 @@ demon
 dentist
 detective
 device
+diorama
 doctor
 dog
 dolphin
@@ -156,6 +158,7 @@ genie
 ghost
 giraffe
 gladiator
+glass marble
 glyph
 gnoll
 goat fish
@@ -284,10 +287,12 @@ orangutan
 orc
 orc war chief
 orchestra
+orchid
 ore
 original character don't steal
 otter
 owl
+pal
 paleontologist
 panda
 parade
@@ -303,6 +308,7 @@ pen
 penetration
 penguin
 perspicacity
+phallus
 phoenix
 photographer
 pianist
@@ -390,6 +396,7 @@ sphere
 spider queen
 spider woman
 spiderweb
+spire
 spy
 squirrel
 staff
@@ -397,6 +404,7 @@ stapler
 starfish
 starship captain
 starship engineer
+stranger
 streamer
 street vendor
 stripper
@@ -406,6 +414,7 @@ superhero
 supervillian
 surveyor
 sushi rolls
+suspect
 swan
 table
 tacos
@@ -428,6 +437,7 @@ tomboy woman
 toothbrush
 tornado
 tortoise
+tower
 toy
 trash can
 treat
