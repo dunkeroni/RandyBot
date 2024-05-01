@@ -17,6 +17,7 @@ DEFAULTS = {"posting_timer": 300,
             "cooldown_adustment": 1800,
             "lookback": 3,
             "message_list": [],
+            "mode": "random",
             }
 
 def initialize():

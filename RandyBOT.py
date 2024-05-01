@@ -8,6 +8,12 @@ from scripts.settings import get_settings, save_settings
 from TemplatePicker import templatePicker
 import scripts.templates as templates
 import asyncio
+import datetime
+import random
+from dailies import (
+    DAILIES_NORMAL,
+    DAILIES_ALTERNATE,
+)
 
 
 load_dotenv()
@@ -46,15 +52,13 @@ async def on_ready():
     except Exception as e:
         logger.info("Sync failed")
         logger.error(e)
-        logger.error(e)
-        logger.info(e)
 
     Bot.loop.create_task(send_periodically())
     Bot.loop.create_task(periodic_save())
 
 async def periodic_save():
     while True:
-        await asyncio.sleep(600) #save every 10 minutes
+        await asyncio.sleep(3600) #save every hour
         tp.save_templates()
 
 async def send_periodically():
@@ -67,25 +71,52 @@ async def send_periodically():
         logger.info("Cooldown: " + str(cooldown) + '  ---  Time Since Last Message: ' + str(time))
 
         if setting["active"]:
-            logger.info("Sending message...")
-            message = tp.build_random_message(setting)
-            post = await channel.send(message)
-            
-            #add the message ID to the list of recent messages
-            setting["message_list"].append(post.id)
-            if len(setting["message_list"]) > setting["lookback"]:
-                setting["message_list"].pop(0)
-            save_settings(setting)
-
-            #log and set cooldown
-            logger.info("Message sent:" + str(post.id) + "\n" + message)
-            cooldown = setting["cooldown_max"]
+            if setting["mode"] == "random":
+                await random_message(channel)
+            elif setting["mode"] == "daily":
+                await daily_message(channel)
+            else:
+                logger.error("UNKNOWN MODE. Cannot send message.")
 
         #wait 10 seconds at a time until the timer is up
         time = 0
         while time < cooldown:
             await asyncio.sleep(10)
             time += 10
+        
+async def random_message(channel : discord.TextChannel):
+    logger.info("Sending random message...")
+    message = tp.build_random_message(setting)
+    post = await channel.send(message)
+    
+    #add the message ID to the list of recent messages
+    setting["message_list"].append(post.id)
+    if len(setting["message_list"]) > setting["lookback"]:
+        setting["message_list"].pop(0)
+    save_settings(setting)
+
+    #log and set cooldown
+    logger.info("Message sent:" + str(post.id) + "\n" + message)
+    cooldown = setting["cooldown_max"]
+
+async def daily_message(channel : discord.TextChannel):
+    logger.info("Sending daily message...")
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    day = days[datetime.datetime.today().weekday()]
+    #test code: use minute %7 instead of weekday value:
+    #day = days[datetime.datetime.today().minute % 7]
+    if datetime.datetime.today().isocalendar()[1] % 2 == 0:
+        daily_info = DAILIES_NORMAL[day]
+    else:
+        if day in DAILIES_ALTERNATE:
+            daily_info = DAILIES_ALTERNATE[day]
+        else:
+            daily_info = DAILIES_NORMAL[day]
+    description = random.choice(daily_info["descriptions"])
+    message = "## It's " + daily_info["name"] + "!\n" + description
+    post = await channel.send(message)
+    print(message)
+    
 
 #limit to only the requests channel
 @Bot.event
@@ -193,7 +224,8 @@ async def randy_deactivate(Interaction: discord.Interaction):
     app_commands.Choice(name="Cooldown Max (s)", value="cooldown_max"),
     app_commands.Choice(name="Cooldown Min (s)", value="cooldown_min"),
     app_commands.Choice(name="Cooldown Adjustment per reply (s)", value="cooldown_adjustment"),
-    app_commands.Choice(name="Lookback (messages)", value="lookback")
+    app_commands.Choice(name="Lookback (messages)", value="lookback"),
+    app_commands.Choice(name="Mode (daily/random)", value="mode")
 ])
 async def randy_settings(Interaction: discord.Interaction, setting_name: str, value: str):
     try:
