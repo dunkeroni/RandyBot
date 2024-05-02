@@ -115,7 +115,13 @@ async def daily_message(channel : discord.TextChannel):
     description = random.choice(daily_info["descriptions"])
     message = "## It's " + daily_info["name"] + "!\n" + description
     post = await channel.send(message)
-    print(message)
+    logger.info("Message sent:" + str(post.id) + ":\n" + message)
+
+    #add the message ID to the list of recent messages
+    setting["message_list"].append(post.id)
+    if len(setting["message_list"]) > setting["lookback"]:
+        setting["message_list"].pop(0)
+    save_settings(setting)
     
 
 #limit to only the requests channel
