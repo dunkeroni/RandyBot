@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import logging
 from scripts.settings import get_settings, save_settings
 from TemplatePicker import templatePicker
+from Tracker import StatTracker
 import scripts.templates as templates
 import asyncio
 import datetime
@@ -32,7 +33,10 @@ logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 #logger.addHandler(logging.StreamHandler())
 
+statTracker = StatTracker()
+
 intents = discord.Intents.default()
+intents.message_content = True
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
 tp = templatePicker()
@@ -101,11 +105,10 @@ async def random_message(channel : discord.TextChannel):
 
 async def daily_message(channel : discord.TextChannel):
     logger.info("Sending daily message...")
+    logger.info(f"UTC time is {datetime.datetime.now(datetime.timezone.utc)}")
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-    day = days[datetime.datetime.today().weekday()]
-    #test code: use minute %7 instead of weekday value:
-    #day = days[datetime.datetime.today().minute % 7]
-    if datetime.datetime.today().isocalendar()[1] % 2 == 0:
+    day = days[datetime.datetime.now(datetime.timezone.utc).weekday()]
+    if datetime.datetime.now(datetime.timezone.utc).isocalendar()[1] % 2 == 0:
         daily_info = DAILIES_NORMAL[day]
     else:
         if day in DAILIES_ALTERNATE:
@@ -128,24 +131,34 @@ async def daily_message(channel : discord.TextChannel):
 @Bot.event
 async def on_message(message):
     global cooldown
+    if not setting["active"]:
+        return
     if message.author == Bot.user:
         return
     if message.channel.id != setting["channel_id"]:
         return
     if message.content.startswith("/"):
         return
-    if setting["active"]:
-        #decrease cooldown if the message is a reply to the bot
-        if message.reference != None:
-            if message.reference.message_id in setting["message_list"] and len(message.attachments):
-                try:
-                    logger.info("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
-                    cooldown = max(cooldown - setting["cooldown_adjustment"], setting["cooldown_min"])
-                    logger.info("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to " + str(cooldown))
-                    await message.add_reaction("⭐")
-                except Exception as e:
-                    logger.info(e)
-                    logger.info("Cooldown reduction failed")
+    if message.reference == None:
+        return
+    if len(message.attachments) == 0:
+        return
+    
+    #The following code will execute any time a message is replied to with an attachment (image) in the current channel
+    refMessage = await message.channel.fetch_message(message.reference.message_id) #get the message that was replied to
+    logger.info(f"Message from {str(message.author)} referencing {str(refMessage.author)} message {str(message.reference.message_id)}")
+    statTracker.handle_new_reply(str(refMessage.author), message.reference.message_id, str(message.author), message.id, message.created_at)
+
+    #decrease cooldown if the message is a reply to the bot
+    if message.reference.message_id in setting["message_list"]:
+        try:
+            logger.info("Message from " + str(message.author) + " referencing RandyBot " + str(message.reference.message_id))
+            cooldown = max(cooldown - setting["cooldown_adjustment"], setting["cooldown_min"])
+            logger.info("Cooldown reduced by " + str(setting["cooldown_adjustment"]) + " seconds to " + str(cooldown))
+            await message.add_reaction("⭐")
+        except Exception as e:
+            logger.info(e)
+            logger.info("Cooldown reduction failed")
 
 #show error if failed
 @Bot.event
@@ -254,14 +267,10 @@ If you have questions, suggestions, or want to report a bug, contact dunkeroni o
     stringform = desc + "\n"
     stringform += "Source Code: https://github.com/dunkeroni/RandyBot \n"
     stringform += "Current message rate: " + str(setting["cooldown_max"]) + " seconds\n"
-    stringform += "Prompts per message: " + str(setting["num_prompts"]) + "\n"
-    stringform += "Consecutive descriptor chance: 1 in " + str(setting["repetition_odds"]) + "\n"
     stringform += "Active: " + str(setting["active"]) + "\n"
-    stringform += "Current number of descriptors: " + str(length["descriptors"]) + "\n"
-    stringform += "Current number of subjects: " + str(length["subjects"]) + "\n"
-    stringform += "Current number of intros: " + str(length["intros"]) + "\n"
+    stringform += "Tracked Users: " + str(statTracker.get_total_users()) + "\n"
 
-    stringform += "\nIf a message is a reply to one of RandyBot's last " + str(setting["lookback"]) + " messages, the cooldown is reduced by " + str(setting["cooldown_adjustment"]) + " seconds, down to a minimum of " + str(setting["cooldown_min"]) + " seconds."
+    #stringform += "\nIf a message is a reply to one of RandyBot's last " + str(setting["lookback"]) + " messages, the cooldown is reduced by " + str(setting["cooldown_adjustment"]) + " seconds, down to a minimum of " + str(setting["cooldown_min"]) + " seconds."
 
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot", description=stringform, color=0x00ff00), ephemeral=True)
 
@@ -271,5 +280,21 @@ If you have questions, suggestions, or want to report a bug, contact dunkeroni o
 async def randy_save(Interaction: discord.Interaction):
     tp.save_templates()
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Saved templates", color=0x00ff00), ephemeral=True)
+
+@Bot.tree.command(name="randystats", description="Get stats about a user")
+@app_commands.check(is_in_server_list)
+async def randy_stats(Interaction: discord.Interaction, user: discord.User):
+    user_stats = statTracker.get_user(str(user))
+    if user_stats is None:
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="No stats found for " + str(user), color=0xff0000), ephemeral=True)
+    else:
+        message = "Stats for " + str(user) + ":\n"
+        message += "Total Points: " + str(user_stats[1]) + "\n"
+        message += "Request Replies: " + str(user_stats[2]) + "\n"
+        message += "Successful Requests: " + str(user_stats[3]) + "\n"
+        message += "Stars Given: NOT YET TRACKED\n" #+ str(user_stats[4]) + "\n"
+        message += "Stars Received: NOT YET TRACKED\n" #+ str(user_stats[5]) + "\n"
+        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Stats for " + str(user), description=message, color=0x00ff00), ephemeral=True)
+
 
 Bot.run(TOKEN, log_handler=handler)

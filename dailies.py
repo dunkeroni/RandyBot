@@ -41,23 +41,25 @@ DAILIES_NORMAL = {
             0: "Bring out some bulge!",
             1: "Show me the she-shaft!",
             2: "Give your horny a horn!",
+            3: "Let's have a sausage-fest!",
+            4: "I heard she grew it herself!",
+            5: "Keep 'em coming!",
         }
     },
     "saturday": {
         "name": "Sit on my face Saturday",
         "descriptions": {
             0: "Show us all your best facesitting!",
-            1: "Hit us with some facesitting!",
-            2: "Facesitting is the best!",
-            3: "Bring on the facesitting!",
-            4: "Show us some facesitting pride!",
+            1: "Death by snu-snu!",
+            2: "It's the best view!",
+            3: "It's the thot that counts!",
         }
     },
     "sunday": {
         "name": "Slippery Sunday",
         "descriptions": {
             0: "Slimegirls all day long!",
-            1: "Dump it on us!",
+            1: "The green slimes are apple flavored!",
             2: "I like 'em wet and see-through!",
             3: "Bring on the slime!",
             4: "Tentacles please",
@@ -82,7 +84,7 @@ DAILIES_ALTERNATE = {
             0: "Show us the ropes!",
             1: "Hit us with some bondage!",
             2: "Tie me up, tie me down!",
-            3: "Hang me out to dry",
+            3: "Hang me out to dry!",
         }
     },
     "wednesday": {

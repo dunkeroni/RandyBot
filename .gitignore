@@ -3,3 +3,6 @@
 .env
 settings.json
 discord.log
+users.db
+requests.db
+/__pycache__
