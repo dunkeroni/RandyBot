@@ -42,7 +42,6 @@ class StatTracker:
     def update_user(self, user_id, column, value):
         self.users_cursor.execute("UPDATE users SET " + column + "=? WHERE user_id=?", (value, user_id))
         self.users_conn.commit()
-        print(self.get_user(user_id))
 
     def update_requests(self, post_id, column, value):
         self.request_cursor.execute("UPDATE requests SET " + column + "=? WHERE post_id=?", (value, post_id))
@@ -50,18 +49,23 @@ class StatTracker:
     
     def assign_points_for_reply(self, reference_id, reference_user, reply_id, reply_user):
         #At this point, both users exist and at least one id->id relationship in the requests table exists
+        #Step 1: Count how many times this user has replied to this request
         self.request_cursor.execute("SELECT COUNT(*) FROM requests WHERE post_id=? AND user_id=?", (reference_id, reply_user[0]))
         result = self.request_cursor.fetchone()
         reply_count = result[0]
-        print("Reply count: " + str(reply_count))
         if reply_count > 3:
             return
         if reply_count == 1:
             reply_points = 3
         else:
             reply_points = 1
+        #step 2: Count how many unique user_id's have replied to this request
+        self.request_cursor.execute("SELECT COUNT(DISTINCT user_id) FROM requests WHERE post_id=?", (reference_id,))
+        result = self.request_cursor.fetchone()
+        total_replies = result[0]
+        print(f"User reply count: {str(reply_count)} --- Total replies: {str(total_replies)}")
         self.update_user(reply_user[0], "total_points", reply_user[1] + reply_points)
-        self.update_user(reference_user[0], "total_points", reference_user[1] + 1)
+        self.update_user(reference_user[0], "total_points", reference_user[1] + total_replies)
 
 
     def handle_new_reply(self, reference_user, reference_id, reply_user, reply_id, timestamp):
@@ -73,7 +77,6 @@ class StatTracker:
         if reply is None:
             self.add_user(reply_user)
             reply = self.get_user(reply_user)
-            print(reply)
         self.update_user(reference_user, "successful_requests", reference[3] + 1)
         self.update_user(reply_user, "replies", reply[2] + 1)
         self.add_request(reference_id, reply_id, "reply", reply_user, timestamp, 0)
