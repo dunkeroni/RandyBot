@@ -13,7 +13,6 @@ import datetime
 import random
 from dailies import (
     DAILIES_NORMAL,
-    DAILIES_ALTERNATE,
 )
 
 
@@ -107,16 +106,13 @@ async def daily_message(channel : discord.TextChannel):
     logger.info("Sending daily message...")
     logger.info(f"UTC time is {datetime.datetime.now(datetime.timezone.utc)}")
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-    day = days[datetime.datetime.now(datetime.timezone.utc).weekday()]
-    if datetime.datetime.now(datetime.timezone.utc).isocalendar()[1] % 2 == 0:
-        daily_info = DAILIES_NORMAL[day]
-    else:
-        if day in DAILIES_ALTERNATE:
-            daily_info = DAILIES_ALTERNATE[day]
-        else:
-            daily_info = DAILIES_NORMAL[day]
-    description = random.choice(daily_info["descriptions"])
-    message = "## It's " + daily_info["name"] + "!\n" + description
+    daynumber = datetime.datetime.now(datetime.timezone.utc).weekday()
+    weeknumber = datetime.datetime.now(datetime.timezone.utc).isocalendar()[1]
+    day = days[daynumber]
+    daily_info = DAILIES_NORMAL[day] #expand here for holidays?
+    selection = daily_info[(weeknumber + 2) % len(daily_info)]
+    description = random.choice(selection["descriptions"])
+    message = "## It's " + selection["name"] + "!\n" + description
     post = await channel.send(message)
     logger.info("Message sent:" + str(post.id) + ":\n" + message)
 
@@ -288,13 +284,20 @@ async def randy_stats(Interaction: discord.Interaction, user: discord.User):
     if user_stats is None:
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="No stats found for " + str(user), color=0xff0000), ephemeral=True)
     else:
-        message = "Stats for " + str(user) + ":\n"
-        message += "Total Points: " + str(user_stats[1]) + "\n"
+        message = "Total Points: " + str(user_stats[1]) + "\n"
         message += "Request Replies: " + str(user_stats[2]) + "\n"
         message += "Successful Requests: " + str(user_stats[3]) + "\n"
         message += "Stars Given: NOT YET TRACKED\n" #+ str(user_stats[4]) + "\n"
         message += "Stars Received: NOT YET TRACKED\n" #+ str(user_stats[5]) + "\n"
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Stats for " + str(user), description=message, color=0x00ff00), ephemeral=True)
 
+@Bot.tree.command(name="randyleaderboard", description="Get the top 5 users by points")
+@app_commands.check(is_in_server_list)
+async def randy_leaderboard(Interaction: discord.Interaction):
+    top = statTracker.top_rankings()
+    message = "Top 5 Users by Points:\n"
+    for i in range(len(top)):
+        message += str(i+1) + ". " + str(top[i][0]) + " - " + str(top[i][1]) + " points\n"
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Leaderboard", description=message, color=0x00ff00), ephemeral=True)
 
 Bot.run(TOKEN, log_handler=handler)

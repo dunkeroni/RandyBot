@@ -59,13 +59,19 @@ class StatTracker:
             reply_points = 3
         else:
             reply_points = 1
+            
         #step 2: Count how many unique user_id's have replied to this request
         self.request_cursor.execute("SELECT COUNT(DISTINCT user_id) FROM requests WHERE post_id=?", (reference_id,))
         result = self.request_cursor.fetchone()
-        total_replies = result[0]
-        print(f"User reply count: {str(reply_count)} --- Total replies: {str(total_replies)}")
+        request_points = result[0]
+
+        #Step 3: If more than one of the requests are fulfilled by this user_id already, set request_points to 0
+        if reply_count > 1:
+            request_points = 0 #This user has already fulfilled this request
+
+        print(f"User reply count: {str(reply_count)}. Total replies: {str(request_points)}. Rewarding {str(reply_points)} points to {reply_user[0]} and {str(request_points)} points to {reference_user[0]}.")
         self.update_user(reply_user[0], "total_points", reply_user[1] + reply_points)
-        self.update_user(reference_user[0], "total_points", reference_user[1] + total_replies)
+        self.update_user(reference_user[0], "total_points", reference_user[1] + request_points)
 
 
     def handle_new_reply(self, reference_user, reference_id, reply_user, reply_id, timestamp):
@@ -81,3 +87,7 @@ class StatTracker:
         self.update_user(reply_user, "replies", reply[2] + 1)
         self.add_request(reference_id, reply_id, "reply", reply_user, timestamp, 0)
         self.assign_points_for_reply(reference_id, reference, reply_id, reply)
+
+    def top_rankings(self):
+        self.users_cursor.execute("SELECT * FROM users ORDER BY total_points DESC LIMIT 5")
+        return self.users_cursor.fetchall()
