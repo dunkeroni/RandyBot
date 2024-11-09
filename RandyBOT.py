@@ -11,9 +11,8 @@ import scripts.templates as templates
 import asyncio
 import datetime
 import random
-from dailies import (
-    DAILIES_NORMAL,
-)
+from dailies import DAILIES_NORMAL
+from holidays import HOLIDAYS
 
 
 load_dotenv()
@@ -108,9 +107,16 @@ async def daily_message(channel : discord.TextChannel):
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     daynumber = datetime.datetime.now(datetime.timezone.utc).weekday()
     weeknumber = datetime.datetime.now(datetime.timezone.utc).isocalendar()[1]
+    # build a [year, 'month-day'] list to check for holidays
+    today = [datetime.datetime.now(datetime.timezone.utc).year, datetime.datetime.now(datetime.timezone.utc).strftime('%m-%d')]
     day = days[daynumber]
-    daily_info = DAILIES_NORMAL[day] #expand here for holidays?
-    selection = daily_info[(weeknumber + 2) % len(daily_info)]
+    logger.info(f"Today is {today[1]}")
+    if not today[1] in HOLIDAYS[today[0]]:
+        daily_info = DAILIES_NORMAL[day]
+        selection = daily_info[(weeknumber + 0) % len(daily_info)]
+    else:
+        logger.info(f"Today is a holiday: {HOLIDAYS[today[0]][today[1]]}. Overriding daily message.")
+        selection = HOLIDAYS[today[0]][today[1]]
     description = random.choice(selection["descriptions"])
     message = "## It's " + selection["name"] + "!\n" + description
     post = await channel.send(message)
@@ -166,48 +172,48 @@ async def is_in_server_list(ctx: discord.Interaction):
     logger.info("allowed servers: " + str(setting["server_whitelist"]))
     return (ctx.guild_id in setting["server_whitelist"]) or setting["server_whitelist"] == []
 
-@Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
-@app_commands.default_permissions(manage_messages=True)
-@app_commands.check(is_in_server_list)
-@app_commands.describe(target="Which list to add the new line to")
-@app_commands.choices(target =[
-    app_commands.Choice(name="descriptors", value="descriptors"),
-    app_commands.Choice(name="subjects", value="subjects"),
-    app_commands.Choice(name="intros", value="intros")
-])
-async def randy_add(Interaction: discord.Interaction, target: str, line: str):
-    total = tp.add_to_template(line, target)
-    if total == -1:
-        await Interaction.response.send_message(content=None, embed=discord.Embed(title="'" + line + "' already exists in " + target, color=0xff0000), ephemeral=True)
-        return
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
+# @Bot.tree.command(name="randyadd", description="Add a new random option to a template file")
+# @app_commands.default_permissions(manage_messages=True)
+# @app_commands.check(is_in_server_list)
+# @app_commands.describe(target="Which list to add the new line to")
+# @app_commands.choices(target =[
+#     app_commands.Choice(name="descriptors", value="descriptors"),
+#     app_commands.Choice(name="subjects", value="subjects"),
+#     app_commands.Choice(name="intros", value="intros")
+# ])
+# async def randy_add(Interaction: discord.Interaction, target: str, line: str):
+#     total = tp.add_to_template(line, target)
+#     if total == -1:
+#         await Interaction.response.send_message(content=None, embed=discord.Embed(title="'" + line + "' already exists in " + target, color=0xff0000), ephemeral=True)
+#         return
+#     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Added `" + line + "` to the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
 
-@Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
-@app_commands.default_permissions(manage_messages=True)
-@app_commands.check(is_in_server_list)
-@app_commands.describe(target="Which list to remove the line from")
-@app_commands.choices(target =[
-    app_commands.Choice(name="descriptors", value="descriptors"),
-    app_commands.Choice(name="subjects", value="subjects"),
-    app_commands.Choice(name="intros", value="intros")
-])
-async def randy_remove(Interaction: discord.Interaction, target: str, line: str):
-    total = tp.remove_from_template(line, target)
-    if total == -1:
-        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
-    else:
-        await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
+# @Bot.tree.command(name="randyremove", description="Remove a random option from a template file")
+# @app_commands.default_permissions(manage_messages=True)
+# @app_commands.check(is_in_server_list)
+# @app_commands.describe(target="Which list to remove the line from")
+# @app_commands.choices(target =[
+#     app_commands.Choice(name="descriptors", value="descriptors"),
+#     app_commands.Choice(name="subjects", value="subjects"),
+#     app_commands.Choice(name="intros", value="intros")
+# ])
+# async def randy_remove(Interaction: discord.Interaction, target: str, line: str):
+#     total = tp.remove_from_template(line, target)
+#     if total == -1:
+#         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Could not find '" + line + "' in " + target, color=0xff0000), ephemeral=True)
+#     else:
+#         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Removed `" + line + "` from the " + target + " list.\nThere are now " + str(total) + " " + target, color=0x00ff00), ephemeral=True)
 
-@Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
-@app_commands.default_permissions(manage_messages=True)
-@app_commands.check(is_in_server_list)
-async def randy_random(Interaction: discord.Interaction):
-    channel = Bot.get_channel(int(setting["channel_id"]))
-    message = tp.build_random_message(setting)
-    logger.info("Sending manual message...")
-    logger.info(message)
-    await channel.send(message)
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
+# @Bot.tree.command(name="randyrandom", description="Send a random message from RandyBOT right now")
+# @app_commands.default_permissions(manage_messages=True)
+# @app_commands.check(is_in_server_list)
+# async def randy_random(Interaction: discord.Interaction):
+#     channel = Bot.get_channel(int(setting["channel_id"]))
+#     message = tp.build_random_message(setting)
+#     logger.info("Sending manual message...")
+#     logger.info(message)
+#     await channel.send(message)
+#     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Sent random message", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyactivate", description="Activate RandyBOT in this channel. Hijacks from previous location.")
 @app_commands.default_permissions(manage_messages=True)
@@ -270,12 +276,12 @@ If you have questions, suggestions, or want to report a bug, contact dunkeroni o
 
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot", description=stringform, color=0x00ff00), ephemeral=True)
 
-@Bot.tree.command(name="randysave", description="Save the current templates to disk (otherwise saves every 10 minutes)")
-@app_commands.default_permissions(manage_messages=True)
-@app_commands.check(is_in_server_list)
-async def randy_save(Interaction: discord.Interaction):
-    tp.save_templates()
-    await Interaction.response.send_message(content=None, embed=discord.Embed(title="Saved templates", color=0x00ff00), ephemeral=True)
+# @Bot.tree.command(name="randysave", description="Save the current templates to disk (otherwise saves every 10 minutes)")
+# @app_commands.default_permissions(manage_messages=True)
+# @app_commands.check(is_in_server_list)
+# async def randy_save(Interaction: discord.Interaction):
+#     tp.save_templates()
+#     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Saved templates", color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randystats", description="Get stats about a user")
 @app_commands.check(is_in_server_list)

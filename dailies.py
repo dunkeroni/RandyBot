@@ -10,7 +10,7 @@ DAILIES_NORMAL = {
             }
         },
         1: {
-            "name": "Muscle Mommy/Daddy/They/Them Monday",
+            "name": "Muscle Monday",
             "descriptions": {
                 0: "Give us all your best beefcakes!",
                 1: "Hit us with some hunks!",
@@ -28,6 +28,40 @@ DAILIES_NORMAL = {
                 2: "High contrast work uniforms! And they bend over!",
                 3: "Le baguette!",
                 4: "Aprons optional!",
+            }
+        },
+        3: {
+            "name": "Mechanic Monday",
+            "descriptions": {
+                0: "Ooh, that's a tight fit!",
+                1: "Grease makes the best lube!",
+                2: "I like a good set of tools!",
+                3: "I heard they're good with their hands!",
+                4: "Overalls are the new lingerie!",              
+            }
+        },
+        4: {
+            "name": "Miniskirt Monday",
+            "descriptions": {
+                0: "The best dress code bowling alleys have ever seen!",
+                1: "The shorter the better!",
+                2: "Give us a spin!",
+                3: "What a view!",
+                4: "I like a good breeze!",
+            }
+        },
+        5: {
+            "name": "Mythical Monday",
+            "descriptions": {
+                0: "Hydras and harpies and dragons, oh my!",
+                1: "Bless my soul... a minotaur?!",
+                2: "Elven magic is the best magic!",
+                3: "Go for a ride on a centaur!",
+                5: "Bring me water nymphs!",
+                6: "Release the kraken!",
+                7: "Do you believe in fairies?",
+                8: "Do sphinxes like cat treats?",
+                9: "Thar be monsters!",
             }
         },
     },
@@ -58,6 +92,41 @@ DAILIES_NORMAL = {
                 3: "I'm not sure if I'm ready for this!",
                 4: "I didn't want to sleep tonight anyway!",
             }
+        },
+        3: {
+            "name": "Tabletop Tuesday",
+            "descriptions": {
+                0: "Clerics make the best lovers!",
+                1: "Time to start a new campaign!",
+                2: "Don't let that rogue out of your sight!",
+                3: "Goblins will do anything for enough gold!",
+                4: "Orcs just want to be loved!",
+                5: "I'm gonna need a bigger dice bag!",
+                6: "Do you think tieflings are into bondage?",
+                7: "Our story beings in the local tavern...",
+                8: "Save the princess!"
+            }
+        },
+        4: {
+            "name": "Tentacle Tuesday",
+            "descriptions": {
+                0: "Self-lubricating ropes!",
+                1: "They're just so squiggly!",
+                2: "So many colors to choose from!",
+                3: "I like a good suction cup!",
+                4: "Who needs hands anyway?",
+                6: "Best science experiment ever!",
+            }
+        },
+        5: {
+            "name": "Tattoo Tuesday",
+            "descriptions": {
+                0: "Show us your ink!",
+                1: "Who can make the best tramp stamp?",
+                2: "Nothing says 'I love you' like having an ex's name permanently stained into your hip!",
+                3: "The solution nobody asked for to wearing long sleeves in the summer!",
+                4: "Art on the best canvas in the world!",
+            }
         }
     },
     "wednesday": {
@@ -76,6 +145,7 @@ DAILIES_NORMAL = {
                 0: "The best things come in small packages!",
                 1: "Small chests are fine too!",
                 2: "Flat is justice!",
+                3: "Summon the itty bitty titty committee!",
             }
         },
         2: {
@@ -85,6 +155,35 @@ DAILIES_NORMAL = {
                 1: "One of you out there is really into swimmers, and I support you!",
                 2: "Who doesn't like a good shower scene?",
                 3: "Why didn't competitive squirting ever catch on?",
+            }
+        },
+        3: {
+            "name": "Waitress Wednesday",
+            "descriptions": {
+                0: "This diner has the best service!",
+                1: "I like a good set of buns!",
+                2: "I'll take a slice of that pie!",
+                3: "Don't forget the tip!",
+                4: "Is there room in that apron for two?",
+            }
+        },
+        4: {
+            "name": "Waifu Wednesday",
+            "descriptions": {
+                0: "Pick a character and go wild!",
+                1: "Dig up your favorite old series!",
+                2: "OCs are welcome!",
+                3: "Doesn't even need to be canon!",
+            }
+        },
+        5: {
+            "name": "Whimsical Wednesday",
+            "descriptions": {
+                0: "Puns only!",
+                1: "I like a good dad joke!",
+                2: "Knock knock!",
+                3: "Pranksters welcome!",
+                4: "Pro tip: Flux can inpaint speech bubbles for you!",
             }
         }
     },
@@ -117,7 +216,16 @@ DAILIES_NORMAL = {
                 4: "I'm not sure what 'Thirsty Thursday' would even look like if we had it.",
                 5: "I wondered if 'Thrify Thursday' would work, but then I couldn't think of a way to make funny jokes about it.",
             }
-        }
+        },
+        3: {
+            "name": "Thigh-High Thursday",
+            "descriptions": {
+                0: "Stockings and garters and thighs, oh my!",
+                1: "I like a good set of legs!",
+                2: "It's bad for bloodflow to wear them too tight!",
+                3: "Make it in lace!"
+            }
+        },
     },
     "friday": {
         0: {
@@ -149,6 +257,35 @@ DAILIES_NORMAL = {
                 3: "Fishnets are the new denim!",
                 4: "Form-fitting and functional, I promise!"
             }
+        },
+        3: {
+            "name": "Freckles Friday",
+            "descriptions": {
+                0: "Gingers have souls!",
+                1: "Freckles are the new tan!",
+                2: "Connect the dots!",
+                3: "Redheads are the best heads!",
+                4: "Freckles are the best makeup!",
+            }
+        },
+        4: {
+            "name": "Nurse Friday",
+            "descriptions": {
+                0: "The best bedside manner!",
+                1: "Model some scrubs!",
+                2: "I'll take a sponge bath!",
+                3: "\"Bend over, and you might feel a small prick.\"",
+            }
+        },
+        5: {
+            "name": "Food Friday",
+            "descriptions": {
+                0: "Strawberries and cream!",
+                1: "Bananas are my favorite!",
+                2: "I like a good set of melons!",
+                3: "Who doesn't like a good sausage?",
+                4: "Peaches make me feel fuzzy!",
+            }
         }
     },
     "saturday": {
@@ -178,7 +315,26 @@ DAILIES_NORMAL = {
                 2: "Show us your booty!",
                 3: "Make 'em wet and salty!",
             }
-        }
+        },
+        3: {
+            "name": "Succubus Saturday",
+            "descriptions": {
+                0: "Don't forget the wings!",
+                1: "The best kind of demon!",
+                2: "I like a good set of horns!",
+                3: "What do you think they do with those tails?",
+                4: "Demons make the best deals!",
+            }
+        },
+        4: {
+            "name": "Smoking Saturday",
+            "descriptions": {
+                0: "Bonus points for a holder!",
+                1: "Sherlock Holmes would be proud!",
+                2: "Puff puff!",
+                3: "Might need some inpainting to do this one.",
+            }
+        },
     },
     "sunday": {
         0: {
@@ -207,11 +363,19 @@ DAILIES_NORMAL = {
                 1: "The green slimes are apple flavored!",
                 2: "I like 'em wet and see-through!",
                 3: "Bring on the slime!",
-                4: "Tentacles please",
-                5: "Aliens make the best lovers!",
-                6: "I heard tentacles are self-lubricating!",
+                4: "Aliens make the best lovers!",
             }
-        }
+        },
+        3: {
+            "name": "Sweater Sunday",
+            "descriptions": {
+                0: "So cozy!",
+                1: "I like a good knit!",
+                2: "Time to bundle up!",
+                3: "Turtlenecks all day long!",
+                4: "Wool makes the best lingerie!",
+            }
+        },
     }
 }
 
