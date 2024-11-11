@@ -102,6 +102,7 @@ async def random_message(channel : discord.TextChannel):
     cooldown = setting["cooldown_max"]
 
 async def daily_message(channel : discord.TextChannel):
+    global cooldown
     logger.info("Sending daily message...")
     logger.info(f"UTC time is {datetime.datetime.now(datetime.timezone.utc)}")
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
@@ -117,7 +118,16 @@ async def daily_message(channel : discord.TextChannel):
     else:
         logger.info(f"Today is a holiday: {HOLIDAYS[today[0]][today[1]]}. Overriding daily message.")
         selection = HOLIDAYS[today[0]][today[1]]
-    description = random.choice(selection["descriptions"])
+
+    #rotate through descriptions based on the time of day
+    current_time_seconds = (datetime.datetime.now(datetime.timezone.utc).hour * 3600 +
+                            datetime.datetime.now(datetime.timezone.utc).minute * 60 +
+                            datetime.datetime.now(datetime.timezone.utc).second)
+    description_index = (current_time_seconds // cooldown) % len(selection["descriptions"])
+    description = selection["descriptions"][description_index]
+
+
+
     message = "## It's " + selection["name"] + "!\n" + description
     post = await channel.send(message)
     logger.info("Message sent:" + str(post.id) + ":\n" + message)
