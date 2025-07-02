@@ -6,10 +6,9 @@ HOLIDAYS = {
                 0: "Manly men in tights, please!",
                 1: "Time for a sausage fest!",
                 2: "Don't forget to wear your mustache!",
-                3: "Lumberjacks as far as the eye can see!",
-                4: "What happens at the hair club?",
-                5: "Fun Fact: It's also \"Women’s Entrepreneurship Day,\", which is like... you could have chosen any other day of the year, but you went with this one?",
-                6: "It's also \"World Toilet Day,\" if you're more into that!",
+                3: "What happens at the hair club?",
+                4: "Fun Fact: It's also \"Women’s Entrepreneurship Day,\", which is like... you could have chosen any other day of the year, but you went with this one?",
+                5: "It's also \"World Toilet Day,\" if you're more into that!",
             }
         },
         '11-28' : {
@@ -218,6 +217,88 @@ HOLIDAYS = {
                 2: "I hope you're wearing green!",
                 3: "Coming to a pond near you!",
                 4: "It's also \"International Day of Happiness,\" so you can be happy about frogs!",
+            }
+        },
+        '06-07': {
+            "name": "Best Friends Day",
+            "descriptions": {
+                0: "Tag your bestie!",
+                1: "Everything is better with friends.",
+                2: "Draw your favorite duo!",
+                3: "Who would you trust with your secrets?",
+                4: "It's also a great day for matching outfits.",
+            }
+        },
+        '06-09': {
+            "name": "Donald Duck Day",
+            "descriptions": {
+                0: "No pants required!",
+                1: "Time to quack up!",
+                2: "Try drawing a sailor hat on anything.",
+                3: "Practice your best duck voice!",
+                4: "Waddle you draw today?",
+            }
+        },
+        '06-11': {
+            "name": "Corn on the Cobb Day",
+            "descriptions": {
+                0: "Everything is butter with corn!",
+                1: "Draw your favorite corn dish.",
+                2: "Corny jokes encouraged.",
+                3: "Who knew kernels could be so inspiring?",
+                4: "Pop some ideas for art today!",
+            }
+        },
+        '06-14': {
+            "name": "International Bath Day",
+            "descriptions": {
+                0: "Invite a friend!",
+                1: "Rubber duckies welcome.",
+                2: "Draw your dream bathtub.",
+                3: "Bubbles make everything better.",
+                4: "Don't forget your bath bomb!",
+                5: "This one is actually about Archimedes and a made-up story about a crown or whatever."
+            }
+        },
+        '06-15': {
+            "name": "Turkey Lovers Day",
+            "descriptions": {
+                0: "Y'all know what to do with this one.",
+                1: "I assume this is about eating turkey... but I guess that doesn't necessarily mean *eating* turkey.",
+                2: "Who says they're just for November?",
+                3: "Show some love for our feathered friends.",
+                4: "Turkey hats are always in style.",
+            }
+        },
+        '06-17': {
+            "name": "Global Garbage Man Day",
+            "descriptions": {
+                0: "Thank your local heroes in orange and green!",
+                1: "Reduce, reuse, recycle... but it all goes to the same landfill anyway, right?",
+                2: "Optimus Prime would have looked good as a garbage truck.",
+                3: "Clean up your house!",
+                4: "Trash talk is encouraged today.",
+            }
+        },
+        '06-21': {
+            "name": "International Surfing Day",
+            "descriptions": {
+                0: "Catch a wave!",
+                1: "Hang twelve!",
+                2: "The original Lilo and Stitch was perfect already and didn't need a remake. Fight me.",
+                3: "I was really hoping to give an inspiring statistic about how you're more likely to drown while surfing than get bitten by a shark, but that's apparently not true. It's like a 1/2.5M chance of drowning, and 1/25K for shark attacks. So there's something to think about.",
+                4: "It's where you get the best view of the beach!",
+            }
+        },
+        '06-27': {
+            "name": "International Pineapple Day",
+            "descriptions": {
+                0: "Hawaiian pizza was the most commonly available topping choice in the UK in 2015.",
+                1: "Hide a pineapple in a surprising place.",
+                2: "Sweet, spiky, and inspiring!",
+                3: "Pineapple hats, anyone?",
+                4: "Art that's as fresh as a pineapple.",
+                5: "It's the only fruit that eats you back! (Seriously, it contains bromelain which breaks down proteins, so if you eat too much of it, it can actually hurt your mouth.)",
             }
         },
     }

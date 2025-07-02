@@ -57,11 +57,9 @@ DAILIES_NORMAL = {
                 1: "Bless my soul... a minotaur?!",
                 2: "Elven magic is the best magic!",
                 3: "Go for a ride on a centaur!",
-                5: "Bring me water nymphs!",
-                6: "Release the kraken!",
-                7: "Do you believe in fairies?",
-                8: "Do sphinxes like cat treats?",
-                9: "Thar be monsters!",
+                4: "Release the kraken!",
+                5: "Do you believe in fairies?",
+                6: "Do sphinxes like cat treats?",
             }
         },
     },
@@ -214,7 +212,7 @@ DAILIES_NORMAL = {
                 2: "Thigh-highs were a contender, but this Friday gets fishnets and it felt redundant.",
                 3: "I was gonna add 'Thumb War Thursday' as a special challenge task, but even I don't want to see those outputs.",
                 4: "I'm not sure what 'Thirsty Thursday' would even look like if we had it.",
-                5: "I wondered if 'Thrify Thursday' would work, but then I couldn't think of a way to make funny jokes about it.",
+                5: "I wondered if 'Thrifty Thursday' would work, but then I couldn't think of a way to make funny jokes about it.",
             }
         },
         3: {

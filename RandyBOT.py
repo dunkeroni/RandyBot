@@ -42,6 +42,12 @@ setting = get_settings()
 cooldown = setting["cooldown_max"] #start at max cooldown
 #setting["message_list"] = [] #list of message IDs RandyBot has recently posted
 
+# Track active tasks to prevent duplicate loops
+active_tasks = {
+    'send_periodically': None,
+    'periodic_save': None
+}
+
 @Bot.event
 async def on_ready():
     logger.info('We have logged in.')
@@ -55,8 +61,22 @@ async def on_ready():
         logger.info("Sync failed")
         logger.error(e)
 
-    Bot.loop.create_task(send_periodically())
-    Bot.loop.create_task(periodic_save())
+    # Check if tasks are already running before creating new ones
+    global active_tasks
+    
+    # Create send_periodically task if not already running
+    if active_tasks['send_periodically'] is None or active_tasks['send_periodically'].done():
+        active_tasks['send_periodically'] = Bot.loop.create_task(send_periodically())
+        logger.info("Created new send_periodically task")
+    else:
+        logger.info("send_periodically task already running, not creating a new one")
+    
+    # Create periodic_save task if not already running
+    if active_tasks['periodic_save'] is None or active_tasks['periodic_save'].done():
+        active_tasks['periodic_save'] = Bot.loop.create_task(periodic_save())
+        logger.info("Created new periodic_save task")
+    else:
+        logger.info("periodic_save task already running, not creating a new one")
 
 async def periodic_save():
     while True:
