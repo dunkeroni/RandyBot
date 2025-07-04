@@ -38,19 +38,24 @@ intents.message_content = True
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
 tp = templatePicker()
-def format_daily_summary():
-    top_users = statTracker.top_users_today()
-    top_requests = statTracker.top_requests_today()
-    summary = "### Daily Summary\n"
+def format_daily_summary(timeframe="today"):
+    top_users = statTracker.top_users(timeframe=timeframe)
+    top_requests = statTracker.top_requests(timeframe=timeframe)
+    if timeframe == "today":
+        summary = "### Daily Summary\n"
+    elif timeframe == "week":
+        summary = "### Weekly Summary\n"
+    else:
+        summary = "### Monthly Summary\n"
 
-    summary += "**Top 3 Users by Points Today:**\n"
+    summary += "**Top 3 Users by Points:**\n"
     if top_users:
         for i, (user, points) in enumerate(top_users, 1):
             summary += f"{i}. {user} - {points} points\n"
     else:
-        summary += "No user points recorded today.\n"
+        summary += "No user points recorded in timeframe.\n"
 
-    summary += "\n**Top 3 Requests by Replies Today:**\n"
+    summary += "\n**Top 3 Requests by Replies:**\n"
     if top_requests:
         server_id = setting.get("server_id")
         channel_id = setting.get("channel_id")
@@ -128,6 +133,24 @@ async def send_periodically():
         #wait 10 seconds at a time until the timer is up
         time = 0
         while time < cooldown:
+            # Check if (now + 10s) is a new day; if so, send summary as extra message
+            now = datetime.datetime.now(datetime.timezone.utc)
+            ten_seconds_later = now + datetime.timedelta(seconds=10)
+            if ten_seconds_later.date() != now.date():
+                if now.weekday() == 6:  # Sunday
+                    timeframe = "week"
+                # Determine if today is the last day of the month
+                now = datetime.datetime.now(datetime.timezone.utc)
+                tomorrow = now + datetime.timedelta(days=1)
+                if tomorrow.month != now.month:
+                    timeframe = "month"
+                elif now.weekday() == 6:  # Sunday
+                    timeframe = "week"
+                else:
+                    timeframe = "today"
+                summary = format_daily_summary(timeframe=timeframe)
+                post = await channel.send(summary)
+                logger.info("Summary message sent at end of day (extra message).")
             await asyncio.sleep(10)
             time += 10
         
@@ -158,20 +181,6 @@ async def daily_message(channel : discord.TextChannel):
     today = [now.year, now.strftime('%m-%d')]
     day = days[daynumber]
     logger.info(f"Today is {today[1]}")
-
-    # Check if this is the last scheduled broadcast of the day
-    next_time = now + datetime.timedelta(seconds=cooldown)
-    if next_time.date() != now.date():
-        # Send summary instead of normal message
-        summary = format_daily_summary()
-        post = await channel.send(summary)
-        logger.info("Summary message sent at end of day.")
-        # Add the message ID to the list of recent messages
-        setting["message_list"].append(post.id)
-        if len(setting["message_list"]) > setting["lookback"]:
-            setting["message_list"].pop(0)
-        save_settings(setting)
-        return
 
     if not today[1] in HOLIDAYS[today[0]]:
         daily_info = DAILIES_NORMAL[day]
@@ -377,7 +386,14 @@ async def randy_stats(Interaction: discord.Interaction, user: discord.User):
 @Bot.tree.command(name="randysummary", description="Show today's top users and requests summary")
 @app_commands.check(is_in_server_list)
 async def randy_summary(Interaction: discord.Interaction):
-    summary = format_daily_summary()
+    # Determine if today is the last day of the month
+    now = datetime.datetime.now(datetime.timezone.utc)
+    tomorrow = now + datetime.timedelta(days=1)
+    if tomorrow.month != now.month:
+        timeframe = "month"
+    else:
+        timeframe = "today"
+    summary = format_daily_summary(timeframe=timeframe)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot Daily Summary", description=summary, color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyleaderboard", description="Get the top 5 users by points")
