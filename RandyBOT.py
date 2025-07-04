@@ -38,6 +38,31 @@ intents.message_content = True
 
 Bot = commands.Bot(command_prefix="/", intents=intents)
 tp = templatePicker()
+def format_daily_summary():
+    top_users = statTracker.top_users_today()
+    top_requests = statTracker.top_requests_today()
+    summary = "### Daily Summary\n"
+
+    summary += "**Top 3 Users by Points Today:**\n"
+    if top_users:
+        for i, (user, points) in enumerate(top_users, 1):
+            summary += f"{i}. {user} - {points} points\n"
+    else:
+        summary += "No user points recorded today.\n"
+
+    summary += "\n**Top 3 Requests by Replies Today:**\n"
+    if top_requests:
+        server_id = setting.get("server_id")
+        channel_id = setting.get("channel_id")
+        for i, (post_id, reply_count) in enumerate(top_requests, 1):
+            summary += (
+                f"{i}. {reply_count} replies - "
+                f"[Message ID {post_id}](https://discord.com/channels/{server_id}/{channel_id}/{post_id})\n"
+            )
+    else:
+        summary += "No requests with replies today.\n"
+
+    return summary
 setting = get_settings()
 cooldown = setting["cooldown_max"] #start at max cooldown
 #setting["message_list"] = [] #list of message IDs RandyBot has recently posted
@@ -124,14 +149,30 @@ async def random_message(channel : discord.TextChannel):
 async def daily_message(channel : discord.TextChannel):
     global cooldown
     logger.info("Sending daily message...")
-    logger.info(f"UTC time is {datetime.datetime.now(datetime.timezone.utc)}")
+    now = datetime.datetime.now(datetime.timezone.utc)
+    logger.info(f"UTC time is {now}")
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-    daynumber = datetime.datetime.now(datetime.timezone.utc).weekday()
-    weeknumber = datetime.datetime.now(datetime.timezone.utc).isocalendar()[1]
+    daynumber = now.weekday()
+    weeknumber = now.isocalendar()[1]
     # build a [year, 'month-day'] list to check for holidays
-    today = [datetime.datetime.now(datetime.timezone.utc).year, datetime.datetime.now(datetime.timezone.utc).strftime('%m-%d')]
+    today = [now.year, now.strftime('%m-%d')]
     day = days[daynumber]
     logger.info(f"Today is {today[1]}")
+
+    # Check if this is the last scheduled broadcast of the day
+    next_time = now + datetime.timedelta(seconds=cooldown)
+    if next_time.date() != now.date():
+        # Send summary instead of normal message
+        summary = format_daily_summary()
+        post = await channel.send(summary)
+        logger.info("Summary message sent at end of day.")
+        # Add the message ID to the list of recent messages
+        setting["message_list"].append(post.id)
+        if len(setting["message_list"]) > setting["lookback"]:
+            setting["message_list"].pop(0)
+        save_settings(setting)
+        return
+
     if not today[1] in HOLIDAYS[today[0]]:
         daily_info = DAILIES_NORMAL[day]
         selection = daily_info[(weeknumber + 0) % len(daily_info)]
@@ -140,13 +181,11 @@ async def daily_message(channel : discord.TextChannel):
         selection = HOLIDAYS[today[0]][today[1]]
 
     #rotate through descriptions based on the time of day
-    current_time_seconds = (datetime.datetime.now(datetime.timezone.utc).hour * 3600 +
-                            datetime.datetime.now(datetime.timezone.utc).minute * 60 +
-                            datetime.datetime.now(datetime.timezone.utc).second)
+    current_time_seconds = (now.hour * 3600 +
+                            now.minute * 60 +
+                            now.second)
     description_index = (current_time_seconds // cooldown) % len(selection["descriptions"])
     description = selection["descriptions"][description_index]
-
-
 
     message = "## It's " + selection["name"] + "!\n" + description
     post = await channel.send(message)
@@ -179,7 +218,13 @@ async def on_message(message):
     #The following code will execute any time a message is replied to with an attachment (image) in the current channel
     refMessage = await message.channel.fetch_message(message.reference.message_id) #get the message that was replied to
     logger.info(f"Message from {str(message.author)} referencing {str(refMessage.author)} message {str(message.reference.message_id)}")
-    statTracker.handle_new_reply(str(refMessage.author), message.reference.message_id, str(message.author), message.id, message.created_at)
+    statTracker.handle_new_reply(
+        str(refMessage.author),
+        message.reference.message_id,
+        str(message.author),
+        message.id,
+        message.created_at.astimezone(datetime.timezone.utc).isoformat()
+    )
 
     #decrease cooldown if the message is a reply to the bot
     if message.reference.message_id in setting["message_list"]:
@@ -250,7 +295,9 @@ async def is_in_server_list(ctx: discord.Interaction):
 @app_commands.check(is_in_server_list)
 async def randy_activate(Interaction: discord.Interaction):
     setting["channel_id"] = Interaction.channel.id
+    setting["server_id"] = Interaction.guild_id
     logger.info("Attaching to channel " + str(Interaction.channel.id))
+    logger.info("Setting server_id to " + str(Interaction.guild_id))
     setting["active"] = True
     save_settings(setting)
     await Interaction.response.send_message(content=None, embed=discord.Embed(title="Activated RandyBOT in this channel", color=0x00ff00), ephemeral=True)
@@ -326,6 +373,12 @@ async def randy_stats(Interaction: discord.Interaction, user: discord.User):
         message += "Stars Given: NOT YET TRACKED\n" #+ str(user_stats[4]) + "\n"
         message += "Stars Received: NOT YET TRACKED\n" #+ str(user_stats[5]) + "\n"
         await Interaction.response.send_message(content=None, embed=discord.Embed(title="Stats for " + str(user), description=message, color=0x00ff00), ephemeral=True)
+    
+@Bot.tree.command(name="randysummary", description="Show today's top users and requests summary")
+@app_commands.check(is_in_server_list)
+async def randy_summary(Interaction: discord.Interaction):
+    summary = format_daily_summary()
+    await Interaction.response.send_message(content=None, embed=discord.Embed(title="RandyBot Daily Summary", description=summary, color=0x00ff00), ephemeral=True)
 
 @Bot.tree.command(name="randyleaderboard", description="Get the top 5 users by points")
 @app_commands.check(is_in_server_list)

@@ -90,4 +90,25 @@ class StatTracker:
 
     def top_rankings(self):
         self.users_cursor.execute("SELECT * FROM users ORDER BY total_points DESC LIMIT 5")
-        return self.users_cursor.fetchall()
+    def top_users_today(self):
+        # Get top 3 users by points earned today
+        import datetime
+        today = datetime.datetime.now(datetime.timezone.utc).date()
+        self.request_cursor.execute(
+            "SELECT user_id, SUM(CASE WHEN type='reply' THEN 3 ELSE 0 END) as points "
+            "FROM requests WHERE DATE(timestamp) = ? GROUP BY user_id ORDER BY points DESC LIMIT 3",
+            (today.isoformat(),)
+        )
+        return self.request_cursor.fetchall()
+
+    def top_requests_today(self):
+        # Get top 3 requests (post_id) by number of replies today
+        import datetime
+        today = datetime.datetime.now(datetime.timezone.utc).date()
+        self.request_cursor.execute(
+            "SELECT post_id, COUNT(*) as reply_count "
+            "FROM requests WHERE type='reply' AND DATE(timestamp) = ? "
+            "GROUP BY post_id ORDER BY reply_count DESC LIMIT 3",
+            (today.isoformat(),)
+        )
+        return self.request_cursor.fetchall()
