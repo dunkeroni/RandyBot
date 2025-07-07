@@ -400,6 +400,17 @@ async def randy_summary(Interaction: discord.Interaction):
 @app_commands.check(is_in_server_list)
 async def randy_leaderboard(Interaction: discord.Interaction):
     top = statTracker.top_rankings()
+    if not top:
+        await Interaction.response.send_message(
+            content=None,
+            embed=discord.Embed(
+                title="Leaderboard",
+                description="No leaderboard data is available.",
+                color=0xff0000
+            ),
+            ephemeral=True
+        )
+        return
     message = "Top 5 Users by Points:\n"
     for i in range(len(top)):
         message += str(i+1) + ". " + str(top[i][0]) + " - " + str(top[i][1]) + " points\n"

@@ -91,6 +91,7 @@ class StatTracker:
 
     def top_rankings(self):
         self.users_cursor.execute("SELECT * FROM users ORDER BY total_points DESC LIMIT 5")
+        return self.users_cursor.fetchall()
     def top_users(self, timeframe="today"):
         """
         Get top 3 users by points earned in the given timeframe.

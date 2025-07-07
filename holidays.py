@@ -301,5 +301,82 @@ HOLIDAYS = {
                 5: "It's the only fruit that eats you back! (Seriously, it contains bromelain which breaks down proteins, so if you eat too much of it, it can actually hurt your mouth.)",
             }
         },
+        '07-06': {
+            "name": "Build A Scarecrow Day",
+            "descriptions": {
+                0: "Time to get stuffed!",
+                1: "Who needs a brain when you have style?",
+                2: "Fashion tip: straw is always in season. But it is always itchy as well.",
+                3: "Perfect day to stand around and do nothing.",
+                4: "It's also World Kissing Day, so make some scarecrows making out I guess.",
+                5: "It's also Ashura and Fried Chicken Day... so I want to see a water-bending drumstick please.",
+            }
+        },
+        '07-08': {
+            "name": "Video Games Day",
+            "descriptions": {
+                0: "What would you spend your 1-up on?",
+                1: "Cortana was nice, but she did complain a lot.",
+                2: "You have died of dysentery.",
+                3: "Dunsparce is the best Pokémon. Fight me.",
+                4: "Hope you brought a lot of quarters, because Samus charges by the hour.",
+                5: "Does anyone remember when Star Fox was the best space shooter ever, and then they followed it up with a game where you run around as a sexy blue furry in a bikini and a loincloth wielding a pole?",
+            }
+        },
+        '07-10': {
+            "name": "Piña Colada Day",
+            "descriptions": {
+                0: "I cannot listen to that song without thinking of Fiona from Shrek.",
+                1: "Umbrella in your drink is mandatory today.",
+                2: "It's the best beach-time drink.",
+                3: "Pineapple, coconut, and a little bit of sunshine.",
+                4: "Did you ever hear about those Caribbean monkeys who steal piña coladas and get drunk on them? We think we run the world, but monkeys who live on resorts have the best life.",
+                5: "It's also Teddy Bears' Picnic Day, which is a nonsensical holiday made because of a song title. It doesn't need to exist.",
+            }
+        },
+        '07-11': {
+            "name": "Free Slurpee Day",
+            "descriptions": {
+                0: "This is a real thing. It's 7/11. If you live near a 7-Eleven, you can get a free slurpee today.",
+                1: "I hope you like brain freeze!",
+                2: "Alternatively, it's Mojito Day, but Piña Colada Day was yesterday. Take a day off, you alcoholics. Jeez.",
+                3: "Okay, I was a bit critical of alcoholics earlier, but the only time I've ever had a slurpee was when it was like 50% vodka so that we could be sneakier about our pregaming at the Dodger's Stadium.",
+                4: "It's also Cheer Up the Lonely Day AND Blueberry Muffin Day, so I guess you can cheer up a lonely blueberry muffin with a free slurpee?",
+                5: "Also it's Swimming Pool Day. July is absolutely stacked with holidays.",
+            }
+        },
+        '07-14': {
+            "name": "Shark Awareness Day",
+            "descriptions": {
+                0: "Sharks have been around longer than trees; over 400 million years. That's back when those giant Prototaxites mushroom forests were around.",
+                1: "Allegedly some sharks can see in color, but only blue colors, and I don't really think that counts.",
+                2: "Many sharks are ovoviviparous, which is a hard word to say, and it basically means sharks can be pregnant.",
+                3: "Sharks can detect electrical fields produced by other animals. It's called electroreception",
+                4: "Greenland Sharks can live for over 400 years!",
+                5: "It's also 'Nude Day' today, which may have been more on brand for us, but sharks are cool so I waited until now to tell you.",
+            }
+        },
+        '07-17': {
+            "name": "Tattoo Day",
+            "descriptions": {
+                0: "Show off your ink!",
+                1: "Every tattoo tells a story. What's yours?",
+                2: "Nothing says 'I love you' like having your ex's name permanently affixed to your body.",
+                3: "Anyone remember those fruit roll-up tongue tattoos? What was in those things?",
+                4: "The oldest known tattooed human lived over 5,000 years ago.",
+                5: "Honestly, I don't like them. My wife has two of them. I call them her ankle stains.",
+            }
+        },
+        '07-20': {
+            "name": "International Moon Day",
+            "descriptions": {
+                0: "That's no moon...!",
+                1: "Celebrate the day humans first walked on the moon; July 20, 1969.",
+                2: "Generate your favorite moon landing conspiracy theory!",
+                3: "The moon is slowly drifting away from Earth. About 1.5 inches per year. But don't worry, the sun will swallow our planet before the moon leaves us.",
+                4: "It's also Space Exploration Day, which I think is just Americans wanting their own different version of the same holiday.",
+                5: "What sort of cheese do you think the moon is made of?",
+            }
+        },
     }
 }
